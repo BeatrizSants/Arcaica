@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campo Minado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;  /* Tela cheia */
+        }
+
+        .game-board {
+            display: grid;  /* Define uma grade */
+            grid-template-columns: repeat(8, 30px);  /* 8 colunas */
+            grid-template-rows: repeat(8, 30px);  /* 8 linhas */
+            gap: 1px;  /* Espaçamento entre as células */
+            background-color: #333;  /* Cor de fundo para a grade */
+        }
+
+        .cell {
+            background-color: #ccc;  /* Cor das células */
+            border: 1px solid #999;  /* Borda das células */
+            text-align: center;  /* Alinhamento do texto */
+            line-height: 30px;  /* Para centralizar verticalmente */
+            cursor: pointer;  /* Mudar o cursor ao passar o mouse */
+        }
+
+        .cell.revealed {
+            background-color: #ddd;  /* Cor quando revelada */
+        }
+    </style>
+</head>
+<body>
+    <h1>Campo Minado</h1>
+    <div id="board" class="game-board"></div>  <!-- O tabuleiro do jogo -->
+    
+    <script>
+        const board = document.getElementById("board");
+        const size = 8;  /* Tamanho da grade */
+
+        // Função para criar o tabuleiro do jogo
+        function createBoard() {
+            board.innerHTML = "";  /* Limpa o tabuleiro */
+
+            // Cria as células do tabuleiro
+            for (let i = 0; i < size * size; i++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";  /* Define a classe da célula */
+                cell.addEventListener("click", revealCell);  /* Adiciona evento de clique */
+                board.appendChild(cell);  /* Adiciona a célula ao tabuleiro */
+            }
+        }
+
+        // Função para revelar uma célula
+        function revealCell(event) {
+            const cell = event.target;
+            if (cell.classList.contains("revealed")) {
+                return;  /* Se a célula já estiver revelada, não faz nada */
+            }
+
+            // Define um número aleatório entre 1 e 9 para a célula
+            const number = Math.floor(Math.random() * 9) + 1;
+            cell.textContent = number;  /* Exibe o número na célula */
+            cell.classList.add("revealed");  /* Marca como revelada */
+        }
+
+        // Cria o tabuleiro ao carregar a página
+        createBoard();  /* Inicia o jogo */
+    </script>
+</body>
+</html>
