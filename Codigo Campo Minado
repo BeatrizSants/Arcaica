@@ -10,66 +10,121 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            height: 100vh;  /* Tela cheia */
+            height: 100vh;
         }
 
         .game-board {
-            display: grid;  /* Define uma grade */
-            grid-template-columns: repeat(8, 30px);  /* 8 colunas */
-            grid-template-rows: repeat(8, 30px);  /* 8 linhas */
-            gap: 1px;  /* Espaçamento entre as células */
-            background-color: #333;  /* Cor de fundo para a grade */
+            display: grid;
+            grid-template-columns: repeat(8, 30px);
+            grid-template-rows: repeat(8, 30px);
+            gap: 1px;
+            background-color: #333;
         }
 
         .cell {
-            background-color: #ccc;  /* Cor das células */
-            border: 1px solid #999;  /* Borda das células */
-            text-align: center;  /* Alinhamento do texto */
-            line-height: 30px;  /* Para centralizar verticalmente */
-            cursor: pointer;  /* Mudar o cursor ao passar o mouse */
+            background-color: #ccc;
+            border: 1px solid #999;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
         }
 
         .cell.revealed {
-            background-color: #ddd;  /* Cor quando revelada */
+            background-color: #ddd;
+        }
+
+        .cell.bomb {
+            background-color: red;
+            color: white;
         }
     </style>
 </head>
 <body>
     <h1>Campo Minado</h1>
-    <div id="board" class="game-board"></div>  <!-- O tabuleiro do jogo -->
+    <div id="board" class="game-board"></div>
+    
+    <!-- Botão para reiniciar o jogo -->
+    <button id="reset-button" class="reset-button" onclick="resetGame()">Reiniciar Jogo</button>
     
     <script>
         const board = document.getElementById("board");
         const size = 8;  /* Tamanho da grade */
+        const minesCount = 10;  /* Número de minas */
+        let mines = new Set();  /* Conjunto para armazenar minas */
 
         // Função para criar o tabuleiro do jogo
         function createBoard() {
-            board.innerHTML = "";  /* Limpa o tabuleiro */
+            board.innerHTML = "";
 
-            // Cria as células do tabuleiro
+            // Colocar minas em posições aleatórias
+            while (mines.size < minesCount) {
+                const randomPosition = Math.floor(Math.random() * (size * size));
+                mines.add(randomPosition);
+            }
+
+            // Criar as células do tabuleiro
             for (let i = 0; i < size * size; i++) {
                 const cell = document.createElement("div");
-                cell.className = "cell";  /* Define a classe da célula */
-                cell.addEventListener("click", revealCell);  /* Adiciona evento de clique */
-                board.appendChild(cell);  /* Adiciona a célula ao tabuleiro */
+                cell.className = "cell";
+                cell.addEventListener("click", revealCell);
+                board.appendChild(cell);
             }
         }
 
         // Função para revelar uma célula
         function revealCell(event) {
             const cell = event.target;
+            const index = Array.from(board.children).indexOf(cell);
+
             if (cell.classList.contains("revealed")) {
                 return;  /* Se a célula já estiver revelada, não faz nada */
             }
 
-            // Define um número aleatório entre 1 e 9 para a célula
-            const number = Math.floor(Math.random() * 9) + 1;
-            cell.textContent = number;  /* Exibe o número na célula */
-            cell.classList.add("revealed");  /* Marca como revelada */
+            if (mines.has(index)) {
+                cell.textContent = "💣";  /* Exibe uma bomba */
+                cell.classList.add("bomb");  /* Estilo de bomba */
+                alert("Game Over! Você encontrou uma bomba.");
+                return;
+            }
+
+            // Contar o número de minas adjacentes
+            const adjacentIndices = getAdjacentIndices(index);
+            const adjacentMinesCount = adjacentIndices.filter(i => mines.has(i)).length;
+
+            cell.textContent = adjacentMinesCount;
+            cell.classList.add("revealed");
         }
 
-        // Cria o tabuleiro ao carregar a página
-        createBoard();  /* Inicia o jogo */
+        // Função para obter índices adjacentes
+        function getAdjacentIndices(index) {
+            const row = Math.floor(index / size);
+            const col = index % size;
+            const adjacent = [];
+
+            // Checar células vizinhas no grid 3x3
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;  /* Ignorar a célula atual */
+                    const r = row + i;
+                    const c = col + j;
+                    if (r >= 0 && r < size && c >= 0 && c < size) {
+                        adjacent.push(r * size + c);
+                    }
+                }
+            }
+
+            return adjacent;
+        }
+    
+
+// Função para reiniciar o jogo
+function resetGame() {
+    createBoard(); /* Reinicia o jogo */
+}
+
+
+        // Criar o tabuleiro ao carregar a página
+        createBoard();  /* Iniciar o jogo */
     </script>
 </body>
 </html>
