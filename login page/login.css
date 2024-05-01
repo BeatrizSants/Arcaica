@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #18032b;
+}
+
+.box {
+  width: 370px;
+  height: 430px;
+  position: relative;
+  margin: 6% auto;
+  padding: 5px;
+  flex-direction: column;
+  border-radius: 45px;
+  border: 2px solid #b364fc;
+  box-shadow: 0 0 10px #b364fc;
+  background-color: #3c1462;
+  color: rgb(255, 255, 255);
+}
+
+#b2 {
+  display: none;
+}
+
+.box h1 {
+  text-align: center;
+  font-size: 35px;
+  margin: 12px;
+}
+
+form {
+  width: auto;
+  height: auto;
+}
+
+.box .input-box {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-box input {
+  width: 280px;
+  height: 45px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #18032b;
+  opacity: 50%;
+  font-weight: bold;
+  transition: transform 200ms ease-in-out;
+  color: aliceblue;
+}
+
+::-ms-reveal {
+  filter: invert(100%);
+}
+
+.input-box input::placeholder {
+  color: rgb(255, 255, 255);
+}
+.input-box input:hover {
+  transform: scale(1.05);
+}
+
+.input-box input:focus {
+  opacity: 100%;
+  outline: none;
+  border: 2px solid #29ec9e;
+  box-shadow: 0 0 3px #29ec9e;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  margin: -15px 0 15px;
+  padding: 10px 25px;
+}
+.remember-forgot label input {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  accent-color: #2b810e;
+  cursor: pointer;
+  transition: transform 200ms ease-in-out;
+  font-weight: bold;
+}
+.remember-forgot input:hover {
+  transform: scale(1.2);
+}
+
+.remember-forgot a {
+  text-decoration: none;
+  color: #b364fc;
+  font-weight: bold;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.box .confirm-btn {
+  width: 145px;
+  height: 45px;
+  border-radius: 50px;
+  border: none;
+  background-color: #130222;
+  color: white;
+  font-weight: bold;
+  transition: transform 200ms ease-in-out;
+  cursor: pointer;
+}
+.box .confirm-btn:hover {
+  background-color: #e7627d;
+  border: 2px solid #f2154b;
+  transform: scale(1.05);
+}
+
+.login-register {
+  width: 130;
+  height: 70px;
+  display: block;
+  justify-content: center;
+  text-align: center;
+}
+
+.login-register p {
+  text-align: center;
+}
+
+.login-register button {
+  width: 130px;
+  height: 23px;
+  margin: 15px 0;
+  cursor: pointer;
+  background-color: red;
+  border-radius: 5px;
+  border: 3px ridge rgb(255, 63, 63);
+  color: rgb(226, 247, 246);
+  font-weight: bold;
+
+  transition: transform 200ms ease-in-out;
+}
+
+.login-register button:hover {
+  background-color: rgb(27, 201, 4);
+  border: 3px ridge rgb(98, 255, 78);
+  transform: scale(1.05);
+}
