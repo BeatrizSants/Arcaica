@@ -27,6 +27,10 @@ body {
   box-shadow: 0 0 10px #b364fc;
   background-color: #3c1462;
   color: rgb(255, 255, 255);
+  /* Adding bg image Jp */
+  background-image: url('image_assets_log/login_bg.png');
+  background-size: cover; /* Cover box */
+  background-position: center;
 }
 
 #b2 {
