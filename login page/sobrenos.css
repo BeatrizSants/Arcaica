@@ -1,0 +1,92 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+      
+}
+
+span{
+    color: rgb(56, 3, 3);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+h1{
+    color: rgb(104, 69, 35);
+    font-size: 1.35rem;
+}
+
+h2{
+    color: rgb(56, 3, 3);
+    font-size: 2.5rem;
+}
+
+h3{
+    color: rgb(104, 69, 35);
+    font-size: 1.35rem;
+}
+
+.popup{
+    position: fixed;
+    padding: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(133, 108, 77, 0.411);
+    transform: scale(1.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.25s ease-in-out, transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+}
+
+.popup-content{
+    position: relative;
+    overflow: auto;
+    margin: 6% auto;
+    flex-direction: column;
+    border-radius: 45px;
+    background-color: blanchedalmond;
+    padding: 16px 24px;
+    width: 384px;
+    /* adicionar a imagem de fundo da popup "sobre nós" aqui... */
+}
+
+.botãoprincipal{ 
+    background-color: rgb(138, 79, 21); /* Define a cor de preenchimento do botão*/
+    color: antiquewhite; /* Define a cor do texto do botão*/
+    text-align: center; /* define a posição do texto no botão*/
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer; /* Altera o cursor do mouse para um ponteiro, indicando que o botão é clicavel*/
+    border-radius: 0.5rem; /* Define qual será o raio do arredondamento das bordas do botão*/
+    border: none; /*essa parte do código está indicando que a borda desse botão será removida*/
+    padding: 10px; /* adiciona um preenchimento interno de 10 pixels ao redor do conteúdo do botão, criando um espaço entre o texto e as bordas deles*/
+    font-size: x-large; /* Faz com que o texto dentro do botão seja exibido em um tamanho de fonte maior do que o normal*/
+    position: relative;
+    top: 10px;
+    left: 600px;
+}
+
+.sair{
+    float: right;
+    width: 45px;
+    cursor: pointer;
+    background-color: rgba(197, 2, 2, 0.24);
+    border-radius: 0.5rem;
+    color: rgb(56, 3, 3);
+    font-weight: bold;
+    text-align: center;
+    line-height: 24px;
+    font-size: large;
+}
+
+.sair:hover{
+    background-color: darkred;
+}
+
+.show-popup{
+    opacity: 1;
+    visibility:visible;
+    transform: scale(1.0);
+}
