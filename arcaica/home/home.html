@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcaica</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  </head>
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
+  <body>
+    <div class="logo">Arcaica</div>
+    <div class="background" id="background">
+      <div w3-include-html="settings/settings.html"></div>
+      <div w3-include-html="about/about.html"></div>
+
+      <button
+        id="btn-pfp"
+        type="button"
+        class="button"
+        data-img="img/#"
+        onclick="showpopup('popupLog')"
+      ></button>
+      <button
+        id="btn-settings"
+        type="button"
+        class="button"
+        data-img="img/#"
+        onclick="showpopup('popupSett')"
+      ></button>
+      <button
+        id="btn-about"
+        type="button"
+        class="button"
+        data-img="img/#"
+        onclick="showpopup('popupAbout')"
+      ></button>
+      <button
+        id="btn-game"
+        type="button"
+        class="button"
+        data-img="img/#"
+        onclick="opengames()"
+      ></button>
+    </div>
+  </body>
+</html>
+<script src="home.js"></script>
