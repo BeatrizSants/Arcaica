@@ -21,7 +21,7 @@
   background-color: #3c1462;
   color: rgb(255, 255, 255);
     /* Adding bg image Jp */
-  background-image: url('login_bg.png');
+  background-image: url('image_assets_log/login_bg.png');
   background-size: cover; /* Cover box */
   background-position: center;
   transform: scale(2.0);
