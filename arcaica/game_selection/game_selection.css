@@ -44,8 +44,9 @@ body {
 
 .conteiner {
   position: relative;
-  width: 25vh;
+  width: 22vh;
   height: 32vh;
+  margin: 0 4vh;
 }
 
 .card {
@@ -53,11 +54,15 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: all 0.5s ease;
+  transition: 0.8s ease-in-out;
+}
+
+.card {
   cursor: pointer;
 }
+
 .card:hover {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) scale(1.13);
 }
 
 .front {
@@ -65,13 +70,13 @@ body {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: rgb(155, 37, 102);
+  background: rgb(255, 255, 255);
 }
 .back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: green;
+  background: rgb(0, 255, 0);
   transform: rotateY(180deg);
 }

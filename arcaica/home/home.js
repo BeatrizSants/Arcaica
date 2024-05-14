@@ -26,11 +26,20 @@ function showpopup(id) {
 }
 function hidepopup(id) {
   var element = document.getElementById(id);
-
   element.classList.remove("show-popup");
 }
 
 //onclik games
 function opengames() {
   window.location.href = "../game_selection/game_selection.html";
+}
+
+//troca login e registro
+function register(id) {
+  document.getElementById("b1").style.display = "none";
+  showpopup(id);
+}
+function login(id) {
+  document.getElementById("b2").style.display = "none";
+  showpopup(id);
 }
