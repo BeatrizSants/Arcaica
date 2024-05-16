@@ -75,6 +75,7 @@ form {
 }
 
 .input-box input::placeholder {
+  font-size: 1.5vh;
   color: rgb(255, 255, 255);
 }
 .input-box input:hover {
@@ -131,6 +132,7 @@ form {
   width: 14.5vh;
   height: 4.5vh;
   border-radius: 5vh;
+  font-size: 1.5vh;
   border: none;
   background-color: #130222;
   color: white;
@@ -152,12 +154,15 @@ form {
   text-align: center;
   flex-direction: column;
   margin: auto;
+  font-size: 1.5vh;
 }
 
 .login-register button {
-  width: 13vh;
-  height: 2.3vh;
+  width: auto;
+  height: auto;
+  padding: 0.2vh;
   margin: 1.5vh auto;
+  font-size: 1.5vh;
   cursor: pointer;
   background-color: #eb295e;
   border-radius: 0.5vh;
@@ -178,24 +183,22 @@ form {
   visibility: visible;
 }
 
-#fechar-popup {
+.fechar-popup {
+  top: 0;
   right: 0;
   position: absolute;
   margin: 1.5vh;
-  width: 4.5vh;
+  width: 3.5vh;
+  font-size: 2vh;
   cursor: pointer;
-  background-color: #eb295e;
-  border-radius: 1vh 1.8vh;
-  border: 0.3vh ridge #9f082f;
-  color: aliceblue;
-  font-weight: bold;
-  font-size: large;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.564);
+  font-weight: bolder;
   text-align: center;
-  line-height: 2vh;
 }
 
-#fechar-popup:hover {
-  background-color: #e7627d;
-  border: 0.2vh solid #f2154b;
-  transform: scale(1.05);
+.fechar-popup:hover {
+  color: #9f082f;
+  transform: scale(1.2);
 }

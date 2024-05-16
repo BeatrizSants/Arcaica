@@ -14,17 +14,17 @@
   z-index: 1;
 }
 
-.popup-content {
+.contentSett {
   position: relative;
-  overflow: auto;
-  width: 384px;
-  height: 360px;
-  padding: 16px 24px;
+  display: flex;
+  width: 27vh;
+  height: auto;
+  padding: 2vh;
   margin: 6% auto;
   flex-direction: column;
-  border-radius: 45px;
-  border: 2px solid #b364fc;
-  box-shadow: 0 0 10px #b364fc;
+  border-radius: 4.5vh;
+  border: 0.2vh solid #b364fc;
+  box-shadow: 0 0 1vh #b364fc;
   background-color: #3c1462;
   color: rgb(255, 255, 255);
   /*adicionar a imagem de fundo da popup de configuração aqui...*/
@@ -35,93 +35,64 @@
   visibility: visible;
 }
 
-.botões {
-  cursor: pointer;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 5px;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  font-size: large;
-}
-
-#ligar {
-  background-color: #29ec9e;
-}
-
-#ligar:hover {
-  background-color: #228c63;
-}
-
-#desligar {
-  background-color: #e7627d;
-}
-
-#desligar:hover {
-  background-color: #9f082f;
-}
-
-#botãoprincipal {
-  border: none;
-  background-color: rgb(155, 16, 197);
-  color: rgb(255, 255, 255);
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 0.5rem;
-  text-align: center;
-  justify-content: center;
-  width: 60px;
-  height: 40px;
-  transition: transform 0.3s ease;
-}
-
-#fechar {
-  float: right;
-  width: 35px;
-  cursor: pointer;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  text-align: center;
-  line-height: 20px;
-  margin-top: 10px;
+.fechar-popup {
+  top: 0;
   right: 0;
   position: absolute;
-  margin: 15px;
-  width: 45px;
-  background-color: #eb295e;
-  border-radius: 10px 18px;
-  border: 3px ridge #9f082f;
-  color: aliceblue;
-  font-weight: bold;
-  font-size: large;
+  margin: 1.5vh;
+  width: 3.5vh;
+  font-size: 2vh;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.564);
+}
+
+.fechar-popup:hover {
+  color: #9f082f;
+  transform: scale(1.2);
+}
+
+.contentSett h1 {
+  color: white;
+  font-size: 2.5vh;
   text-align: center;
-  line-height: 20px;
+}
+.contentSett span {
+  color: rgb(255, 255, 255);
+  font-size: 2vh;
+}
+.sBox {
+  display: flex;
+  width: auto;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
-#fechar:hover {
+.turn {
+  width: 3.5vh;
+  height: 2vh;
+  background-color: #228c63;
+  border-radius: 3vh;
+  align-items: center;
+  margin: 0.5vh;
+}
+.botao {
+  position: absolute;
+  width: 1.5vh;
+  height: 1.5vh;
+  cursor: pointer;
+  border: none;
+  border-radius: 3vh;
+  background-color: #29ec9e;
+  margin-top: 0.25vh;
+  margin-left: 0.3vh;
+}
+.turn.off {
+  background-color: #9f082f;
+}
+.turn.off .botao {
+  right: 8.7vh;
   background-color: #e7627d;
-  border: 2px solid #f2154b;
-  transform: scale(1.05);
-}
-
-span {
-  color: rgb(255, 255, 255);
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-top: 0%;
-}
-
-#music {
-  color: rgb(255, 255, 255);
-  font-size: 1.35rem;
-}
-
-#efeitos {
-  color: rgb(255, 255, 255);
-  font-size: 1.35rem;
-}
-
-#geral {
-  color: rgb(255, 255, 255);
-  font-size: 1.35rem;
 }

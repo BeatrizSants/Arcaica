@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap");
 .popup {
   position: fixed;
   margin: 0.5vh;
@@ -14,16 +15,13 @@
   z-index: 1;
 }
 
-.popup-content {
+.contentAbout {
   position: relative;
-  overflow: auto;
   margin: 6% auto;
-  flex-direction: column;
-  border-radius: 45px;
-  background-color: blanchedalmond;
-  padding: 16px 24px;
-  width: 384px;
-  /* adicionar a imagem de fundo da popup "sobre nós" aqui... */
+  background-color: rgb(234, 182, 103);
+  padding: 1.6vh 2.4vh;
+  width: 38.4vh;
+  background-image: url("#");
 }
 
 .show-popup {
@@ -31,39 +29,32 @@
   visibility: visible;
 }
 
-.sair {
-  float: right;
-  width: 45px;
+.fechar-popup {
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin: 1.5vh;
+  width: 3.5vh;
+  font-size: 2vh;
   cursor: pointer;
-  background-color: rgba(197, 2, 2, 0.24);
-  border-radius: 0.5rem;
-  color: rgb(56, 3, 3);
-  font-weight: bold;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.564);
+  font-weight: bolder;
   text-align: center;
-  line-height: 24px;
-  font-size: large;
 }
 
-.sair:hover {
-  background-color: darkred;
+.fechar-popup:hover {
+  color: #9f082f;
+  transform: scale(1.2);
 }
-span {
+.contentAbout h1 {
   color: rgb(56, 3, 3);
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.5vh;
+  text-align: center;
 }
 
-h1 {
+.contentAbout p {
   color: rgb(104, 69, 35);
-  font-size: 1.35rem;
-}
-
-h2 {
-  color: rgb(56, 3, 3);
-  font-size: 2.5rem;
-}
-
-h3 {
-  color: rgb(104, 69, 35);
-  font-size: 1.35rem;
+  font-size: 2vh;
 }
