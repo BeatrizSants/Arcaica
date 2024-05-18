@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campo Minado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .game-board {
+            display: grid;
+            gap: 1px;
+            background-color: #333;
+            width: 90vmin; /* Board width is 90% of the smaller dimension (width or height) of the viewport */
+            height: 90vmin; /* Board height is 90% of the smaller dimension (width or height) of the viewport */
+        }
+
+        .cell {
+            background-color: #ccc;
+            border: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2vmin; /* Font size adjusts with the viewport size */
+        }
+
+        .cell.revealed {
+            background-color: #ddd;
+        }
+
+        .cell.bomb {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campo Minado</h1>
+    <label for="difficulty-level">Nível de Dificuldade:</label>
+    <select id="difficulty-level">
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+    </select>
+    <button id="reset-button" class="reset-button">Reiniciar Jogo</button>
+    <div id="board" class="game-board"></div>
+    
+    <script>
+        const board = document.getElementById("board");
+        const resetButton = document.getElementById("reset-button");
+        const difficultyLevel = document.getElementById("difficulty-level");
+
+        let size, minesCount;
+        let mines = new Set();
+
+        const levels = {
+            easy: { size: 8, minesCount: 10 },
+            medium: { size: 12, minesCount: 20 },
+            hard: { size: 16, minesCount: 40 }
+        };
+
+        function createBoard() {
+            const level = levels[difficultyLevel.value];
+            size = level.size;
+            minesCount = level.minesCount;
+
+            board.innerHTML = "";
+            mines.clear();
+
+            while (mines.size < minesCount) {
+                const randomPosition = Math.floor(Math.random() * (size * size));
+                mines.add(randomPosition);
+            }
+
+            for (let i = 0; i < size * size; i++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                cell.addEventListener("click", revealCell);
+                cell.addEventListener("contextmenu", markCell);
+                board.appendChild(cell);
+            }
+
+            board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+            board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+        }
+
+        function revealCell(event) {
+            const cell = event.target;
+            const index = Array.from(board.children).indexOf(cell);
+
+            if (cell.classList.contains("revealed")) {
+                return;
+            }
+
+            if (mines.has(index)) {
+                cell.textContent = "💣";
+                cell.classList.add("bomb");
+                alert("Game Over! Você encontrou uma bomba.");
+                return;
+            }
+
+            const adjacentIndices = getAdjacentIndices(index);
+            const adjacentMinesCount = adjacentIndices.filter(i => mines.has(i)).length;
+
+            cell.textContent = adjacentMinesCount;
+            cell.classList.add("revealed");
+
+            if (adjacentMinesCount === 0) {
+                adjacentIndices.forEach(i => {
+                    if (!board.children[i].classList.contains("revealed")) {
+                        revealCell({ target: board.children[i] });
+                    }
+                });
+            }
+        }
+
+        function markCell(event) {
+            event.preventDefault();
+            const cell = event.target;
+
+            if (cell.classList.contains("revealed")) {
+                return;
+            }
+
+            if (cell.textContent === "🚩") {
+                cell.textContent = "";
+            } else {
+                cell.textContent = "🚩";
+            }
+        }
+
+        function getAdjacentIndices(index) {
+            const row = Math.floor(index / size);
+            const col = index % size;
+            const adjacent = [];
+
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const r = row + i;
+                    const c = col + j;
+                    if (r >= 0 && r < size && c >= 0 && c < size) {
+                        adjacent.push(r * size + c);
+                    }
+                }
+            }
+
+            return adjacent;
+        }
+
+        function resetGame() {
+            createBoard();
+        }
+
+        createBoard();
+        resetButton.addEventListener("click", resetGame);
+        difficultyLevel.addEventListener("change", resetGame);
+    </script>
+</body>
+</html>
