@@ -17,14 +17,16 @@ body {
 .background {
   position: relative;
   width: 132vh;
-  height: 80vh;
+  height: 83vh;
   border: 1.5vh solid #d0af07;
-  background-color: #10021d;
   box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
     inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(img/Gselect_all_page.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .logo {
@@ -45,7 +47,7 @@ body {
 .conteiner {
   position: relative;
   width: 22vh;
-  height: 32vh;
+  height: 33vh;
   margin: 0 4vh;
 }
 
@@ -54,10 +56,7 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: 0.8s ease-in-out;
-}
-
-.card {
+  transition: 0.5s ease-in-out;
   cursor: pointer;
 }
 
@@ -65,18 +64,31 @@ body {
   transform: rotateY(180deg) scale(1.13);
 }
 
-.front {
+.back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: rgb(255, 255, 255);
+  background-image: url(img/Gselect_Card_Back.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.back {
+.front {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   background: rgb(0, 255, 0);
   transform: rotateY(180deg);
+}
+
+.return-btn {
+  position: absolute;
+  width: 40vh;
+  height: 10vh;
+  left: 2vh;
+  top: 4vh;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
