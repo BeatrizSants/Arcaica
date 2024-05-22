@@ -1,0 +1,144 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: url(img/back_img.png);
+}
+
+.background {
+  position: relative;
+  width: 132vh;
+  height: 83vh;
+  border: 1.5vh solid #d0af07;
+  box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(img/Gselect_all_page.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#background {
+  transition: background-image 0.1s ease-in;
+}
+
+.logo {
+  position: relative;
+  width: 100%;
+  height: 10vh;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 6vh;
+  font-weight: bold;
+  color: white;
+  background-color: #10021d;
+}
+
+.container {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: row;
+  width: 75vh; /*tamanho carrossel*/
+  height: 50vh;
+}
+.card-container {
+  perspective: 1000px;
+  width: 75vh;
+  height: 35vh;
+}
+.card {
+  height: 35vh;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-container:hover .card {
+  transform: rotateY(-180deg) scale(1.1);
+}
+.back,
+.front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.back {
+  background-image: url("img/Gselect_Card_Back.png");
+}
+
+.front {
+  background-image: url("img/Gselect_Card_Front_anon.png");
+  transform: rotateY(180deg);
+}
+
+.button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#return-btn {
+  width: 40vh;
+  height: 10vh;
+  left: 2vh;
+  top: 4vh;
+}
+
+#fav-btn {
+  top: 1vh;
+  right: 2vh;
+  width: 10vh;
+  height: 15vh;
+}
+.swiper-button-next {
+  background-color: transparent;
+  position: absolute;
+  top: auto;
+  bottom: 3vh;
+  right: 42%;
+  width: 9vh;
+  height: 4vh;
+  color: transparent;
+}
+.swiper-button-prev {
+  background-color: transparent;
+  position: absolute;
+  top: auto;
+  bottom: 3vh;
+  left: 42%;
+  width: 9vh;
+  height: 4vh;
+  color: transparent;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações</title>
+    <link rel="stylesheet" href="configurações.css">
+</head>
+
+<script>
+    function chamarpopup(){
+        var elemento = document.getElementById("popup")
+        elemento.classList.add("chamarpopup")
+    }
+
+    function fecharpopup(){
+        var elemento =document.getElementById("popup")
+        elemento.classList.remove("chamarpopup")
+    }
+</script>
+
+<body>
+    <button id="botãoprincipal" onclick="chamarpopup()">clique aqui</button>
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button id="fechar" onclick="fecharpopup()">X</button>
+            <span>Configurações</span>
+              <h1></h1>
+            <h2 id="music">Música:</h2>
+    <div>
+         <button class="botões" id="ligar">Ligar</button>
+         <button class="botões" id="desligar">Desligar</button>
+    <h3 id="efeitos">Efeitos sonoros:</h3>
+       <button class="botões" id="ligar">Ligar</button>
+       <button class="botões" id="desligar">Desligar</button>
+  
+
+    </div>
+        </div>
+
+    </div>   
+</body>
+</html>

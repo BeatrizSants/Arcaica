@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcaica - Jogos</title>
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="game_selection.css" />
+
+    <!-- icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+  </head>
+  <body>
+    <div class="logo">Arcaica</div>
+    <div class="background" id="background">
+      <button
+        id="return-btn"
+        type="button"
+        class="button"
+        data-img="img/Gselect_Back_open.png"
+        onclick="homereturn()"
+      ></button>
+      <button
+        id="fav-btn"
+        type="button"
+        class="button"
+        data-img="img/Gselect_Favorite_open.png"
+      ></button>
+      <!-- game cards -->
+      <div class="swiper mySwiper container">
+        <div class="swiper-wrapper content">
+          <div class="swiper-slide card-container">
+            <a href="jogo-da-velha/jogo-da-velha.html">
+              <div class="card">
+                <div class="front"></div>
+                <div class="back"></div>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide card-container">
+            <a href="#">
+              <div class="card">
+                <div class="front"></div>
+                <div class="back"></div>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide card-container">
+            <a href="#">
+              <div class="card">
+                <div class="front"></div>
+                <div class="back"></div>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide card-container">
+            <a href="#">
+              <div class="card">
+                <div class="front"></div>
+                <div class="back"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        id="swiper-button-next"
+        class="swiper-button-next"
+        type="button"
+        data-img="img/Gselect_Pscroll_Right_open.png"
+      ></div>
+      <div
+        id="swiper-button-prev"
+        class="swiper-button-prev"
+        type="button"
+        data-img="img/Gselect_Pscroll_Left_open.png"
+      ></div>
+    </div>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="game_selection.js"></script>
+  </body>
+</html>
