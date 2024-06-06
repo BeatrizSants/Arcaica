@@ -21,7 +21,7 @@ body {
   width: 132vh;
   height: 80vh;
   border: 1.5vh solid #d0af07;
-  background-color: #10021d;
+
   box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
     inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
   background-image: url(img/All_Page.png);
@@ -29,15 +29,23 @@ body {
   background-size: cover;
   background-position: center;
 }
+#image-overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
 .button {
   position: absolute;
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-
-#background {
-  transition: background-image 0.1s ease-in;
 }
 
 #btn-pfp {
@@ -57,9 +65,9 @@ body {
 }
 
 #btn-about {
-  width: 34vh;
+  width: 32vh;
   height: 15vh;
-  right: 14vh;
+  right: 16vh;
   top: 7vh;
 }
 
@@ -67,8 +75,8 @@ body {
   border-top-left-radius: 16vh;
   border-top-right-radius: 12vh;
   width: 45vh;
-  height: 20vh;
-  right: 2vh;
+  height: 18vh;
+  right: 5vh;
   bottom: 0.5vh;
 }
 

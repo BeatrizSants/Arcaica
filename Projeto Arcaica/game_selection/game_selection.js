@@ -17,20 +17,21 @@ function homereturn() {
 //troca background
 document.addEventListener("DOMContentLoaded", function () {
   const background = document.getElementById("background");
-
-  // Array de classes de botões que queremos selecionar
-  const buttonClasses = ["button", "swiper-button-next", "swiper-button-prev"]; // Adicione mais classes conforme necessário
+  const imageOverlay = document.getElementById("image-overlay");
+  const buttonClasses = ["button", "swiper-button-next", "swiper-button-prev"];
 
   buttonClasses.forEach(function (buttonClass) {
     const buttons = background.querySelectorAll(`.${buttonClass}`);
     buttons.forEach(function (button) {
       button.addEventListener("mouseover", function () {
         const imgUrl = button.getAttribute("data-img");
-        background.style.backgroundImage = "url(" + imgUrl + ")";
+        imageOverlay.style.backgroundImage = "url(" + imgUrl + ")";
+        imageOverlay.style.opacity = 1;
       });
 
       button.addEventListener("mouseout", function () {
         background.style.backgroundImage = "url(img/Gselect_all_page.png)";
+        imageOverlay.style.opacity = 0;
       });
     });
   });

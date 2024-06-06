@@ -6,15 +6,18 @@ w3.includeHTML();
 //troca background
 document.addEventListener("DOMContentLoaded", function () {
   const background = document.getElementById("background");
+  const imageOverlay = document.getElementById("image-overlay");
   const buttons = background.querySelectorAll(".button");
   buttons.forEach(function (button) {
     button.addEventListener("mouseover", function () {
       const imgUrl = button.getAttribute("data-img");
-      background.style.backgroundImage = "url(" + imgUrl + ")";
+      imageOverlay.style.backgroundImage = "url(" + imgUrl + ")";
+      imageOverlay.style.opacity = 1;
     });
 
     button.addEventListener("mouseout", function () {
       background.style.backgroundImage = "url(img/All_Page.png)";
+      imageOverlay.style.opacity = 0;
     });
   });
 });
