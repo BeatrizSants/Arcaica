@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campo Minado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .game-board {
+            display: grid;
+            gap: 1px;
+            background-color: #333;
+        }
+
+        .cell {
+            background-color: #ccc;
+            border: 1px solid #999;
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .cell.revealed {
+            background-color: #ddd;
+        }
+
+        .cell.bomb {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campo Minado</h1>
+    <!-- Adicionado um seletor de nível de dificuldade -->
+    <label for="difficulty-level">Nível de Dificuldade:</label>
+    <select id="difficulty-level">
+        <option value="easy">Fácil</option>
+        <option value="medium">Médio</option>
+        <option value="hard">Difícil</option>
+    </select>
+    <button id="reset-button" class="reset-button">Reiniciar Jogo</button>
+    <div id="timer">Tempo: 0s</div> <!-- Adicionado elemento para o timer -->
+    <div id="board" class="game-board"></div>
+    
+    <script>
+        const board = document.getElementById("board");
+        const resetButton = document.getElementById("reset-button");
+        const difficultyLevel = document.getElementById("difficulty-level");
+        const timerDisplay = document.getElementById("timer"); // Referência ao elemento do timer
+
+        let size, minesCount;
+        let mines = new Set();
+        let timer = 0;
+        let timerInterval;
+        let firstClick = false;
+
+        const levels = {
+            easy: { size: 8, minesCount: 10 },
+            medium: { size: 12, minesCount: 20 },
+            hard: { size: 16, minesCount: 40 }
+        };
+
+        function createBoard() {
+            const level = levels[difficultyLevel.value];
+            size = level.size;
+            minesCount = level.minesCount;
+
+            board.innerHTML = "";
+            mines.clear();
+            firstClick = false;
+
+            while (mines.size < minesCount) {
+                const randomPosition = Math.floor(Math.random() * (size * size));
+                mines.add(randomPosition);
+            }
+
+            for (let i = 0; i < size * size; i++) {
+                const cell = document.createElement("div");
+                cell.className = "cell";
+                cell.addEventListener("click", revealCell);
+                cell.addEventListener("contextmenu", markCell);
+                board.appendChild(cell);
+            }
+
+            board.style.gridTemplateColumns = `repeat(${size}, 50px)`;
+            board.style.gridTemplateRows = `repeat(${size}, 50px)`;
+        }
+
+        function revealCell(event) {
+            if (!firstClick) {
+                startTimer();
+                firstClick = true;
+            }
+
+            const cell = event.target;
+            const index = Array.from(board.children).indexOf(cell);
+
+            if (cell.classList.contains("revealed")) {
+                return;
+            }
+
+            if (mines.has(index)) {
+                cell.textContent = "💣";
+                cell.classList.add("bomb");
+                stopTimer();
+                alert("Game Over! Você encontrou uma bomba.");
+                return;
+            }
+
+            const adjacentIndices = getAdjacentIndices(index);
+            const adjacentMinesCount = adjacentIndices.filter(i => mines.has(i)).length;
+
+            cell.textContent = adjacentMinesCount;
+            cell.classList.add("revealed");
+
+            if (adjacentMinesCount === 0) {
+                adjacentIndices.forEach(i => {
+                    if (!board.children[i].classList.contains("revealed")) {
+                        revealCell({ target: board.children[i] });
+                    }
+                });
+            }
+        }
+
+        function markCell(event) {
+            event.preventDefault();
+            const cell = event.target;
+
+            if (cell.classList.contains("revealed")) {
+                return;
+            }
+
+            if (cell.textContent === "🚩") {
+                cell.textContent = "";
+            } else {
+                cell.textContent = "🚩";
+            }
+        }
+
+        function getAdjacentIndices(index) {
+            const row = Math.floor(index / size);
+            const col = index % size;
+            const adjacent = [];
+
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const r = row + i;
+                    const c = col + j;
+                    if (r >= 0 && r < size && c >= 0 && c < size) {
+                        adjacent.push(r * size + c);
+                    }
+                }
+            }
+
+            return adjacent;
+        }
+
+        function resetGame() {
+            clearInterval(timerInterval);
+            timer = 0;
+            timerDisplay.textContent = "Tempo: 0s";
+            createBoard();
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timer++;
+                timerDisplay.textContent = `Tempo: ${timer}s`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        createBoard();
+        resetButton.addEventListener("click", resetGame);
+        difficultyLevel.addEventListener("change", resetGame);
+    </script>
+</body>
+</html>
