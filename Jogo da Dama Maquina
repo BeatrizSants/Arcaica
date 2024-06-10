@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damas</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+        #title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .board {
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            background-color: #f0d9b5;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .cell.dark {
+            background-color: #b58863;
+        }
+        .piece {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 1px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .piece.red {
+            background-color: #ff0000;
+        }
+        .piece.black {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Jogo de Damas</h1>
+    <div class="board" id="board"></div>
+    <script>
+        const board = document.getElementById('board');
+        const cells = [];
+
+        // Cria o tabuleiro
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                if ((i + j) % 2 !== 0) {
+                    cell.classList.add('dark');
+                }
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                board.appendChild(cell);
+                cells.push(cell);
+            }
+        }
+
+        // Adiciona peças vermelhas
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 8; j++) {
+                if ((i + j) % 2 !== 0) {
+                    const piece = createPiece('red');
+                    cells[i * 8 + j].appendChild(piece);
+                }
+            }
+        }
+
+        // Adiciona peças pretas
+        for (let i = 5; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                if ((i + j) % 2 !== 0) {
+                    const piece = createPiece('black');
+                    cells[i * 8 + j].appendChild(piece);
+                }
+            }
+        }
+
+        // Função para criar uma peça
+        function createPiece(color) {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            if (color === 'red') {
+                piece.classList.add('red');
+            } else {
+                piece.classList.add('black');
+            }
+            return piece;
+        }
+    </script>
+</body>
+</html>
