@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damas</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+        #title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .board {
+            width: 400px;
+            height: 400px;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            background-color: #f0d9b5;
+            border: 1px solid #000;
+            position: relative;
+        }
+        .cell.dark {
+            background-color: #b58863;
+        }
+        .piece {
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 1px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .piece.red {
+            background-color: #ff0000;
+        }
+        .piece.black {
+            background-color: #000;
+        }
+        .selected {
+            border: 2px solid yellow;
+        }
+        #restart-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restart-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Jogo de Damas Local</h1>
+    <div class="board" id="board"></div>
+    <button id="restart-btn" onclick="restartGame()">Reiniciar</button>
+    <div id="scores">
+        <p>Vermelho: <span id="red-score">0</span></p>
+        <p>Preto: <span id="black-score">0</span></p>
+    </div>
+    <script>
+        const board = document.getElementById('board');
+        const cells = [];
+        let currentPlayer = 'red';  // O jogador inicial é a peça vermelha
+        let redScore = 0;
+        let blackScore = 0;
+
+        for (let i = 0; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                const cell = document.createElement('div');
+                cell.classList.add('cell');
+                if ((i + j) % 2 !== 0) {
+                    cell.classList.add('dark');
+                }
+                cell.dataset.row = i;
+                cell.dataset.col = j;
+                cell.addEventListener('click', handleCellClick);
+                board.appendChild(cell);
+                cells.push(cell);
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 8; j++) {
+                if ((i + j) % 2 !== 0) {
+                    const piece = createPiece('red');
+                    cells[i * 8 + j].appendChild(piece);
+                }
+            }
+        }
+
+        for (let i = 5; i < 8; i++) {
+            for (let j = 0; j < 8; j++) {
+                if ((i + j) % 2 !== 0) {
+                    const piece = createPiece('black');
+                    cells[i * 8 + j].appendChild(piece);
+                }
+            }
+        }
+
+        let selectedPiece = null;
+
+        function handleCellClick(event) {
+            const cell = event.currentTarget;
+            const piece = cell.querySelector('.piece');
+
+            if (piece && piece.classList.contains('selected')) {
+                piece.classList.remove('selected');
+                selectedPiece = null;
+            } else if (piece) {
+                if (selectedPiece) {
+                    selectedPiece.classList.remove('selected');
+                }
+                if (piece.classList.contains(currentPlayer)) {
+                    piece.classList.add('selected');
+                    selectedPiece = piece;
+                }
+            } else if (selectedPiece) {
+                const row = parseInt(cell.dataset.row);
+                const col = parseInt(cell.dataset.col);
+                const selectedRow = parseInt(selectedPiece.parentElement.dataset.row);
+                const selectedCol = parseInt(selectedPiece.parentElement.dataset.col);
+
+                if (isValidMove(selectedRow, selectedCol, row, col)) {
+                    movePiece(selectedPiece, cell);
+                    selectedPiece.classList.remove('selected');
+                    selectedPiece = null;
+                    currentPlayer = (currentPlayer === 'red') ? 'black' : 'red';
+                } else if (isValidCapture(selectedRow, selectedCol, row, col)) {
+                    capturePiece(selectedPiece, cell, selectedRow, selectedCol, row, col);
+                    selectedPiece.classList.remove('selected');
+                    selectedPiece = null;
+
+                    // Verificar se pode capturar outra peça
+                    const newRow = parseInt(cell.dataset.row);
+                    const newCol = parseInt(cell.dataset.col);
+                    if (canCapture(newRow, newCol)) {
+                        piece.classList.add('selected');
+                        selectedPiece = piece;
+                    } else {
+                        currentPlayer = (currentPlayer === 'red') ? 'black' : 'red';
+                    }
+                }
+            }
+        }
+
+        function createPiece(color) {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            if (color === 'red') {
+                piece.classList.add('red');
+            } else {
+                piece.classList.add('black');
+            }
+            return piece;
+        }
+
+        function movePiece(piece, targetCell) {
+            targetCell.appendChild(piece);
+        }
+
+        function capturePiece(piece, targetCell, startRow, startCol, endRow, endCol) {
+            const capturedRow = (startRow + endRow) / 2;
+            const capturedCol = (startCol + endCol) / 2;
+            const capturedCell = cells.find(cell => 
+                parseInt(cell.dataset.row) === capturedRow && 
+                parseInt(cell.dataset.col) === capturedCol
+            );
+            const capturedPiece = capturedCell.querySelector('.piece');
+            if (capturedPiece) {
+                capturedCell.removeChild(capturedPiece);
+                if (capturedPiece.classList.contains('red')) {
+                    blackScore++;
+                    document.getElementById('black-score').textContent = blackScore;
+                } else {
+                    redScore++;
+                    document.getElementById('red-score').textContent = redScore;
+                }
+                movePiece(piece, targetCell);
+            }
+        }
+        function isValidMove(startRow, startCol, endRow, endCol) {
+            const rowDiff = endRow - startRow;
+            const colDiff = endCol - startCol;
+
+            if (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 1) {
+                const targetCell = cells.find(cell => 
+                    parseInt(cell.dataset.row) === endRow && 
+                    parseInt(cell.dataset.col) === endCol
+                );
+                return targetCell && !targetCell.querySelector('.piece');
+            }
+            return false;
+        }
+
+        function isValidCapture(startRow, startCol, endRow, endCol) {
+            const rowDiff = endRow - startRow;
+            const colDiff = endCol - startCol;
+
+            if (Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 2) {
+                const middleRow = (startRow + endRow) / 2;
+                const middleCol = (startCol + endCol) / 2;
+                const middleCell = cells.find(cell => 
+                    parseInt(cell.dataset.row) === middleRow && 
+                    parseInt(cell.dataset.col) === middleCol
+                );
+                const middlePiece = middleCell.querySelector('.piece');
+                const targetCell = cells.find(cell => 
+                    parseInt(cell.dataset.row) === endRow && 
+                    parseInt(cell.dataset.col) === endCol
+                );
+                return middlePiece && !middlePiece.classList.contains(currentPlayer) && targetCell && !targetCell.querySelector('.piece');
+            }
+            return false;
+        }
+
+        function canCapture(row, col) {
+            const directions = [
+                { row: -2, col: -2 },
+                { row: -2, col: 2 },
+                { row: 2, col: -2 },
+                { row: 2, col: 2 }
+            ];
+
+            return directions.some(direction => {
+                const newRow = row + direction.row;
+                const newCol = col + direction.col;
+                return isValidCapture(row, col, newRow, newCol);
+            });
+        }
+
+        function restartGame() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>
