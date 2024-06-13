@@ -167,3 +167,20 @@ body {
   height: 4vh;
   color: transparent;
 }
+
+.monarchIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5vh;
+  width: 15vh;
+  height: 15vh;
+  background-image: url(#);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.monarchIcon:hover {
+  background-image: url(#);
+}
