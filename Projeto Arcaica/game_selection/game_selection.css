@@ -13,13 +13,16 @@ body {
   flex-direction: column;
   background-attachment: fixed;
   background-size: cover;
-  background-image: url(img/back_img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: url(img/MasterPage_Fullpage.png);
 }
 
 .background {
   position: relative;
   width: 132vh;
-  height: 83vh;
+  height: 80vh;
   border: 1.5vh solid #d0af07;
   box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
     inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
@@ -30,6 +33,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  margin-top: 18.2vh;
 }
 #image-overlay {
   position: absolute;
@@ -44,55 +48,65 @@ body {
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
-.logo {
-  position: relative;
-  width: 100%;
-  height: 10vh;
-  z-index: 1;
+.painel {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 6vh;
-  font-weight: bold;
-  color: white;
-  background-color: #10021d;
+  flex-direction: column;
+  height: 50vh;
+  width: 120vh;
+  position: absolute;
+  top: 18vh;
+}
+
+.name {
+  position: absolute;
+  transform: scale(1.05);
+  top: -20vh;
+  width: 30vh;
+  height: 25vh;
+  transition: opacity 0.3s ease-in-out;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 2;
 }
 
 .container {
-  position: relative;
-  width: auto;
-  height: auto;
+  position: absolute;
+  width: 100vh;
+  height: 45vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
 }
 
 .content {
   position: relative;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  flex-direction: row;
-  width: 75vh; /*tamanho carrossel*/
-  height: 50vh;
+  width: 100vh;
+  height: 45vh;
+  bottom: 0;
 }
+
 .card-container {
-  perspective: 1000px;
-  width: 75vh;
-  height: 35vh;
+  height: 45vh;
+  cursor: pointer;
 }
+
 .card {
-  height: 35vh;
+  height: 45vh;
   transform-style: preserve-3d;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 
 .card-container:hover .card {
-  transform: rotateY(-180deg) scale(1.1);
+  transform: rotateY(-180deg);
 }
+
 .back,
 .front {
   position: absolute;
@@ -100,7 +114,8 @@ body {
   height: 100%;
   backface-visibility: hidden;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
 }
 
 .back {
@@ -108,7 +123,7 @@ body {
 }
 
 .front {
-  background-image: url("img/Gselect_Card_Front_anon.png");
+  visibility: visible;
   transform: rotateY(180deg);
 }
 

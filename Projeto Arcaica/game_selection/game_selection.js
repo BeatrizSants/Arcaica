@@ -36,3 +36,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Seleciona todos os elementos de cartão desejados
+  const cards = document.querySelectorAll(".card-container");
+
+  // Seleciona o elemento com a classe 'name'
+  const nameDiv = document.querySelector(".name");
+
+  // Adiciona o ouvinte de evento para o evento mouseover
+  cards.forEach(function (card) {
+    card.addEventListener("mouseover", function () {
+      const imgSrc = card.getAttribute("data-img");
+      nameDiv.style.backgroundImage = `url(${imgSrc})`;
+      nameDiv.style.opacity = "1"; // Torna a div name visível
+    });
+    card.addEventListener("mouseout", function () {
+      nameDiv.style.opacity = "0"; // Torna a div name invisível
+    });
+  });
+
+  // Seleciona todos os elementos com a classe 'front'
+  const frontCards = document.querySelectorAll(".front");
+
+  // Itera sobre cada elemento com a classe 'front' para definir o estilo de fundo
+  frontCards.forEach(function (frontCard) {
+    const imgSrc = frontCard.getAttribute("data-img");
+    frontCard.style.backgroundImage = `url(${imgSrc})`;
+  });
+});

@@ -13,7 +13,9 @@ body {
   flex-direction: column;
   background-attachment: fixed;
   background-size: cover;
-  background-image: url(img/back_img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/MasterPage_Fullpage.png);
 }
 
 .background {
@@ -21,13 +23,13 @@ body {
   width: 132vh;
   height: 80vh;
   border: 1.5vh solid #d0af07;
-
   box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
     inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
   background-image: url(img/All_Page.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  margin-top: 18.2vh;
 }
 #image-overlay {
   top: 0;
@@ -78,21 +80,4 @@ body {
   height: 18vh;
   right: 5vh;
   bottom: 0.5vh;
-}
-
-.logo {
-  position: relative;
-  width: 100%;
-  height: 10vh;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 6vh;
-  font-weight: bold;
-  color: white;
-  background-color: #10021d;
 }
