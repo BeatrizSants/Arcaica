@@ -16,7 +16,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 
-  background-image: url(img/MasterPage_Fullpage.png);
+  background-image: url(../img/MasterPage_Fullpage.png);
 }
 
 .background {
@@ -29,7 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(img/Gselect_all_page.png);
+  background-image: url(../img/Gselect_all_page.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -119,7 +119,7 @@ body {
 }
 
 .back {
-  background-image: url("img/Gselect_Card_Back.png");
+  background-image: url("../img/Gselect_Card_Back.png");
 }
 
 .front {

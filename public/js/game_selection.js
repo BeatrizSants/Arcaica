@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       button.addEventListener("mouseout", function () {
-        background.style.backgroundImage = "url(img/Gselect_all_page.png)";
+        background.style.backgroundImage = "url(../img/Gselect_all_page.png)";
         imageOverlay.style.opacity = 0;
       });
     });
