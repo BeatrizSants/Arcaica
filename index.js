@@ -24,7 +24,7 @@ router.get('/settings',function(req,res){
 
 //TODO: Rodar uma instância local do mysql e conectar. (Somente assim conseguiremos fazer login, salvar e recuperar pontuações, etc...)
 //TODO: FAZER ENDPOINTS DE LOGIN!
-//TODO: Dentre vários, outros, completar os seguintes enpoints:
+//TODO: Dentre vários outros, completar os seguintes enpoints:
 router.get('/recupera_pontuacao',function(req,res){
     console.log(`TODO: Implementar conexão com banco e buscar pontuação (organizar e formatar os dados, etc). Retornar um json!`);
 });
