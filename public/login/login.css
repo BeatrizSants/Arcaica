@@ -27,7 +27,7 @@
   box-shadow: 0 0 1vh #b364fc;
   background-color: #3c1462;
   color: rgb(255, 255, 255);
-  background-image: url("../login/img/login_bg.png");
+  background-image: url("../img/login_bg.png");
   background-size: cover;
   background-position: center;
 }

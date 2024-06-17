@@ -11,7 +11,7 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 function homereturn() {
-  window.location.href = "../home/home.html";
+  window.location.href = "../";
 }
 
 //troca background
