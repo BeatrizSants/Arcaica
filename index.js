@@ -6,23 +6,23 @@ const porta = 3000;
 
 // ========================== ROTAS GET - Páginas  =========================== 
 router.get('/',function(req,res){
-    res.sendFile(path.join(__dirname+'/home/home.html'));
+    res.sendFile(path.join(__dirname+'/paginas/home.html'));
 });
 
 router.get('/login',function(req,res){
-    res.sendFile(path.join(__dirname+'/home/login/login.html'));
+    res.sendFile(path.join(__dirname+'/paginas/login.html'));
 });
 
 router.get('/about',function(req,res){
-    res.sendFile(path.join(__dirname+'/home/about/about.html'));
+    res.sendFile(path.join(__dirname+'/paginas/about.html'));
 });
 
 router.get('/game_selection',function(req,res){
-    res.sendFile(path.join(__dirname+'/game_selection/game_selection.html'));
+    res.sendFile(path.join(__dirname+'/paginas/game_selection.html'));
 });
 
 router.get('/settings',function(req,res){
-    res.sendFile(path.join(__dirname+'/configuracoes/configuracoes.html'));
+    res.sendFile(path.join(__dirname+'/paginas/configuracoes.html'));
 });
 
 //TODO: FAZER ENDPOINTS DE LOGIN!
