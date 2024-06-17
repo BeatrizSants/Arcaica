@@ -36,7 +36,7 @@ router.post('/salva_pontuacao',function(req,res){
     console.log(`TODO: Implementar conexão com banco e salvar pontuação na tabela correta. Retornar status 200 se ok.`);
     //obs 2: posts (e qualquer requisição na verdade) podem ser testados  pelo software de requisições [[INSOMNIA]] ou [[POSTMAN]]  (o que preferirem. Eu acho o insomnia mais simples)
 });
-//TODO: Ver quais outros enpoints serão necessários e escrever a regra do back  (Inicialmente a regra de negócio pode ser neste arquivo mesmo)
+//TODO: Ver quais outros endpoints serão necessários e escrever a regra do back  (Inicialmente a regra de negócio pode ser neste arquivo mesmo)
 
 
 // ===================================== CONFIGURAÇÕES GLOBAIS DA APLICAÇÃO DO BACKEND ===================================== 
