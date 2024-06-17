@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/MasterPage_Fullpage.png);
+}
+
+.background {
+  position: relative;
+  width: 132vh;
+  height: 80vh;
+  border: 1.5vh solid #d0af07;
+  box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  background-image: url(img/All_Page.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: 18.2vh;
+}
+#image-overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  box-shadow: inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+.button {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+#btn-pfp {
+  width: 12vh;
+  height: 12vh;
+  top: 9vh;
+  left: 16vh;
+  transform: rotate(45deg);
+}
+
+#btn-settings {
+  width: 9vh;
+  height: 9vh;
+  top: 25vh;
+  left: 16vh;
+  transform: rotate(75deg);
+}
+
+#btn-about {
+  width: 32vh;
+  height: 15vh;
+  right: 16vh;
+  top: 7vh;
+}
+
+#btn-game {
+  border-top-left-radius: 16vh;
+  border-top-right-radius: 12vh;
+  width: 45vh;
+  height: 18vh;
+  right: 5vh;
+  bottom: 0.5vh;
+}

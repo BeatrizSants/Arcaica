@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arcaica</title>
+    <link rel="stylesheet" href="home.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <!-- Link W3 Schools -->
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+  </head>
+
+  <body>
+    <div class="background" id="background">
+      <!-- Incluindo arquivos HTML externos -->
+      <div w3-include-html="login/login.html"></div>
+      <div w3-include-html="settings/settings.html"></div>
+      <div w3-include-html="about/about.html"></div>
+      <div id="image-overlay"></div>
+      <button
+        id="btn-pfp"
+        type="button"
+        class="button"
+        data-img="img/All_page_profopen.png"
+        onclick="showpopup('popupLog')"
+        alt="Profile Button"
+      ></button>
+      <button
+        id="btn-settings"
+        type="button"
+        class="button"
+        data-img="img/All_page_setopen.png"
+        onclick="showpopup('popupSett')"
+        alt="Settings Button"
+      ></button>
+      <button
+        id="btn-about"
+        type="button"
+        class="button"
+        data-img="img/All_page_paperopen.png"
+        onclick="showpopup('popupAbout')"
+        alt="About Button"
+      ></button>
+      <button
+        id="btn-game"
+        type="button"
+        class="button"
+        data-img="img/All_page_chestopen.png"
+        onclick="opengames()"
+        alt="Game Button"
+      ></button>
+    </div>
+  </body>
+</html>
+<script src="home.js"></script>

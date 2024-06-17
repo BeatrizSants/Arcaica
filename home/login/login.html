@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="login/login.css" />
+  </head>
+  <body>
+    <div class="popup" id="popupLog">
+      <div id="b1" class="box">
+        <button class="fechar-popup" onclick="hidepopup('popupLog')">X</button>
+        <h1>Log In</h1>
+        <form id="login" class="input-group">
+          <div class="input-box">
+            <input type="text" placeholder="Usuário" required />
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="Senha" required />
+          </div>
+          <div class="remember-forgot">
+            <label><input type="checkbox" />Lembrar usuário</label>
+            <a href="#">Esqueceu a senha?</a>
+          </div>
+
+          <div class="submit-btn">
+            <button type="submit" class="confirm-btn">ENTRAR</button>
+          </div>
+
+          <div class="login-register">
+            <p>Não tem uma conta?</p>
+            <button type="button" class="btn" onclick="register('b2')">
+              Crie sua conta
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="b2" class="box">
+        <button class="fechar-popup" onclick="hidepopup('popupLog')">X</button>
+        <h1>Nova Conta</h1>
+        <form id="register" class="input-group">
+          <div class="input-box">
+            <input type="text" placeholder="Usuário" required />
+          </div>
+          <div class="input-box">
+            <input type="email" placeholder="Email" required />
+          </div>
+          <div class="input-box">
+            <input type="password" placeholder="Senha" required />
+          </div>
+
+          <div class="submit-btn">
+            <button type="submit" class="confirm-btn">Registrar</button>
+          </div>
+
+          <div class="login-register">
+            <p>Já tem uma conta?</p>
+            <button type="button" class="btn" onclick="login('b1')">
+              Log in
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
