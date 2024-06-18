@@ -1,0 +1,109 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/MasterPage_Fullpage.png);
+}
+
+.background {
+  position: relative;
+  width: 132vh;
+  height: 80vh;
+  border: 1.5vh solid #d0af07;
+  box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(img/Pconf_Cminado_Base.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 15vh;
+}
+
+.vine-b {
+  position: absolute;
+  width: 55vh;
+  height: 45vh;
+  bottom: 0;
+  left: 0;
+  margin: 0.5vh;
+  background-image: url(img/Pconf_Allversions_Vinebottomleft.png);
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.vine-t {
+  position: absolute;
+  width: 55vh;
+  height: 45vh;
+  top: 0;
+  right: 0;
+  margin: 0.5vh;
+  background-image: url(img/Pconf_Allversions_Vinetopright.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.return-btn {
+  position: absolute;
+  width: 38vh;
+  height: 10vh;
+  bottom: 1vh;
+  left: 0;
+  background-image: url(img/Pconf_Allversions_backbutton_closed.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.return-btn:hover {
+  background-image: url(img/Pconf_Allversions_backbutton_open.png);
+}
+
+.info {
+  position: absolute;
+  width: 10vh;
+  height: 10vh;
+  background-image: url(img/Pconf_Allversions_Infobutton_closed.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  bottom: 1vh;
+  right: 1vh;
+  border-radius: 50%;
+}
+.info:hover {
+  background-image: url(img/Pconf_Allversions_Infobutton_open.png);
+}
+.start {
+  position: absolute;
+  width: 55vh;
+  height: 25vh;
+  background-image: url(img/Pconf_Allversions_playbutton_closed.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  bottom: 8vh;
+  left: 11vh;
+}
+.start:hover {
+  background-image: url(img/Pconf_Allversions_playbutton_open.png);
+}
