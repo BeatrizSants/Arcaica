@@ -1,8 +1,12 @@
+import {openDb} from './configDB.js';
+
 const express = require('express');
 const app = express();
 const path = require('path');
 const router = express.Router();
 const porta = 3000;
+
+openDb();
 
 // ========================== ROTAS GET - Páginas  =========================== 
 // (estes endpoints não têm regra de negócio, apenas retornam cópias dos htmls pro navegador do cliente usar. Muito simples)

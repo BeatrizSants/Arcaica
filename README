@@ -1,0 +1,4 @@
+- Instalar o node js
+- Instalar as dependências:
+    npm install --save sequelize-cli -g
+    npm install --save express nodemon sequelize sqlite sqlite3
