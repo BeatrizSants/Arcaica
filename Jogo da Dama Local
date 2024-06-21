@@ -53,6 +53,9 @@
         .piece.black {
             background-color: #000;
         }
+        .piece.king {
+            border: 3px solid gold;
+        }
         .selected {
             border: 2px solid yellow;
         }
@@ -82,7 +85,7 @@
     <script>
         const board = document.getElementById('board');
         const cells = [];
-        let currentPlayer = 'red';  // O jogador inicial é a peça vermelha
+        let currentPlayer = 'black'; // Preto começa primeiro
         let redScore = 0;
         let blackScore = 0;
 
@@ -152,12 +155,11 @@
                     selectedPiece.classList.remove('selected');
                     selectedPiece = null;
 
-                    // Verificar se pode capturar outra peça
                     const newRow = parseInt(cell.dataset.row);
                     const newCol = parseInt(cell.dataset.col);
                     if (canCapture(newRow, newCol)) {
-                        piece.classList.add('selected');
-                        selectedPiece = piece;
+                        selectedPiece = cell.querySelector('.piece');
+                        selectedPiece.classList.add('selected');
                     } else {
                         currentPlayer = (currentPlayer === 'red') ? 'black' : 'red';
                     }
@@ -178,6 +180,11 @@
 
         function movePiece(piece, targetCell) {
             targetCell.appendChild(piece);
+
+            const row = parseInt(targetCell.dataset.row);
+            if ((piece.classList.contains('red') && row === 7) || (piece.classList.contains('black') && row === 0)) {
+                piece.classList.add('king');
+            }
         }
 
         function capturePiece(piece, targetCell, startRow, startCol, endRow, endCol) {
@@ -200,16 +207,32 @@
                 movePiece(piece, targetCell);
             }
         }
+
         function isValidMove(startRow, startCol, endRow, endCol) {
             const rowDiff = endRow - startRow;
             const colDiff = endCol - startCol;
+            const piece = cells[startRow * 8 + startCol].querySelector('.piece');
 
-            if (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 1) {
-                const targetCell = cells.find(cell => 
-                    parseInt(cell.dataset.row) === endRow && 
-                    parseInt(cell.dataset.col) === endCol
-                );
-                return targetCell && !targetCell.querySelector('.piece');
+            if (piece.classList.contains('king')) {
+                if (Math.abs(rowDiff) === Math.abs(colDiff) && Math.abs(rowDiff) > 0) {
+                    let r = startRow + Math.sign(rowDiff);
+                    let c = startCol + Math.sign(colDiff);
+                    while (r !== endRow && c !== endCol) {
+                        const intermediateCell = cells[r * 8 + c];
+                        if (intermediateCell.querySelector('.piece')) {
+                            return false;
+                        }
+                        r += Math.sign(rowDiff);
+                        c += Math.sign(colDiff);
+                    }
+                    const targetCell = cells[endRow * 8 + endCol];
+                    return targetCell && !targetCell.querySelector('.piece');
+                }
+            } else {
+                if (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 1) {
+                    const targetCell = cells[endRow * 8 + endCol];
+                    return targetCell && !targetCell.querySelector('.piece');
+                }
             }
             return false;
         }
@@ -217,36 +240,61 @@
         function isValidCapture(startRow, startCol, endRow, endCol) {
             const rowDiff = endRow - startRow;
             const colDiff = endCol - startCol;
+            const piece = cells[startRow * 8 + startCol].querySelector('.piece');
 
-            if (Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 2) {
-                const middleRow = (startRow + endRow) / 2;
-                const middleCol = (startCol + endCol) / 2;
-                const middleCell = cells.find(cell => 
-                    parseInt(cell.dataset.row) === middleRow && 
-                    parseInt(cell.dataset.col) === middleCol
-                );
-                const middlePiece = middleCell.querySelector('.piece');
-                const targetCell = cells.find(cell => 
-                    parseInt(cell.dataset.row) === endRow && 
-                    parseInt(cell.dataset.col) === endCol
-                );
-                return middlePiece && !middlePiece.classList.contains(currentPlayer) && targetCell && !targetCell.querySelector('.piece');
+            if (piece.classList.contains('king')) {
+                if (Math.abs(rowDiff) === Math.abs(colDiff) && Math.abs(rowDiff) > 1) {
+                    let r = startRow + Math.sign(rowDiff);
+                    let c = startCol + Math.sign(colDiff);
+                    let capturedPiece = null;
+                    while (r !== endRow && c !== endCol) {
+                        const intermediateCell = cells[r * 8 + c];
+                        const intermediatePiece = intermediateCell.querySelector('.piece');
+                        if (intermediatePiece) {
+                            if (capturedPiece) {
+                                return false;
+                            }
+                            if (intermediatePiece.classList.contains(currentPlayer)) {
+                                return false;
+                            }
+                            capturedPiece = intermediatePiece;
+                        }
+                        r += Math.sign(rowDiff);
+                        c += Math.sign(colDiff);
+                    }
+                    const targetCell = cells[endRow * 8 + endCol];
+                    return capturedPiece && targetCell && !targetCell.querySelector('.piece');
+                }
+            } else {
+                if (Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 2) {
+                    const middleRow = (startRow + endRow) / 2;
+                    const middleCol = (startCol + endCol) / 2;
+                    const middleCell = cells.find(cell => 
+                        parseInt(cell.dataset.row) === middleRow && 
+                        parseInt(cell.dataset.col) === middleCol
+                    );
+                    const middlePiece = middleCell.querySelector('.piece');
+                    const targetCell = cells[endRow * 8 + endCol];
+                    return middlePiece && !middlePiece.classList.contains(currentPlayer) && targetCell && !targetCell.querySelector('.piece');
+                }
             }
             return false;
         }
 
         function canCapture(row, col) {
             const directions = [
-                { row: -2, col: -2 },
-                { row: -2, col: 2 },
-                { row: 2, col: -2 },
-                { row: 2, col: 2 }
+                { row: -1, col: -1 },
+                { row: -1, col: 1 },
+                { row: 1, col: -1 },
+                { row: 1, col: 1 }
             ];
 
             return directions.some(direction => {
                 const newRow = row + direction.row;
                 const newCol = col + direction.col;
-                return isValidCapture(row, col, newRow, newCol);
+                const targetRow = newRow + direction.row;
+                const targetCol = newCol + direction.col;
+                return isValidCapture(row, col, targetRow, targetCol);
             });
         }
 
