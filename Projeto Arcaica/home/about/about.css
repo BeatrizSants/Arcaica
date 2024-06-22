@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap");
 .popup {
   position: fixed;
   margin: 0.5vh;
@@ -18,10 +18,13 @@
 .contentAbout {
   position: relative;
   margin: 6% auto;
-  background-color: rgb(234, 182, 103);
-  padding: 1.6vh 2.4vh;
-  width: 38.4vh;
-  background-image: url("#");
+  background-color:transparent;
+  padding: 2vh 3vh;
+  width: 62vh;
+  height: 75vh;
+  background-image: url("../img/All_page_about.png");
+  background-size: cover;
+  background-position: center;
 }
 
 .show-popup {
@@ -50,11 +53,17 @@
 }
 .contentAbout h1 {
   color: rgb(56, 3, 3);
-  font-size: 2.5vh;
+  font-size: 3.3vh;
   text-align: center;
+  font-family: 'Dancing Script', cursive;
 }
 
 .contentAbout p {
-  color: rgb(104, 69, 35);
-  font-size: 2vh;
+  color: rgb(48, 25, 2);
+  font-size: 3vh;
+  font-family: 'Dancing Script', cursive; /* Aplicando a fonte manuscrita */
+  margin-bottom: 1.3vh;
+  text-indent: 1vh;
 }
+
+
