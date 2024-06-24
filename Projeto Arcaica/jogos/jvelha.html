@@ -17,8 +17,51 @@
       <div class="vine-t"></div>
       <div class="return-btn" onclick="gamereturn()"></div>
       <div class="info" onclick="showpopup('popupInfo')"></div>
-      <div class="start"></div>
+      <!-- Container for the entire content -->
+      <div class="container">
+        <!-- Title section with two buttons -->
+        <div class="titles">
+          <button id="single-player-title" class="title-button"></button>
+          <button id="multi-player-title" class="title-button"></button>
+        </div>
+        <!-- Single Player section -->
+        <div id="single-player" class="content-section">
+          <h2>Single Player</h2>
+          <!-- Add an image to the Single Player section here -->
+          <img
+            src="path_to_your_image.jpg"
+            alt="Single Player Image"
+            class="section-image"
+          />
+          <div class="difficulty">
+            <label for="difficulty-select">Difficulty:</label>
+            <select id="difficulty-select">
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <button id="single-player-play"></button>
+        </div>
+        <!-- Multi Player section -->
+        <div id="multi-player" class="content-section">
+          <h2>Multi Player</h2>
+          <!-- Add an image here -->
+          <img
+            src="path_to_your_image.jpg"
+            alt="Multi Player Image"
+            class="section-image"
+          />
+          <div class="multiplayer-mode">
+            <label for="mode-select">Mode:</label>
+            <input type="range" id="mode-select" min="0" max="1" step="1" />
+            <span id="mode-label">Offline</span>
+          </div>
+          <button id="multi-player-play"></button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
+<script src="jvelha.js"></script>
 <script src="info.js"></script>
