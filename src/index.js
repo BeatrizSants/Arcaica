@@ -1,9 +1,10 @@
 import {openDb, criaDatabase} from './configDB.js';
-import {insereUsuario, atualizaUsuario, deletaUsuario} from './controller/Usuario.js'
-import {inserePartida, atualizaPartida, deletaPartida} from './controller/Partida.js'
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import usersRoutes from './routes/usuarioRoutes.js/'
+import partidasRoutes from './routes/partidaRoutes.js/'
+import authRoutes from './routes/authRoutes.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,124 +44,18 @@ app.get('/settings',function(req,res){
     res.sendFile(path.join(__dirname+'/paginas/configuracoes.html'));
 });
 
-//TODO: FAZER ENDPOINTS DE LOGIN!
+// ============================= ROTAS DE AUTH  ============================= 
+app.use("/auth", authRoutes);
 
-app.post('/cadastra_usuario', async function(req, res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && (!req.body.nomeUsuario || !req.body.nome || !req.body.senha) ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'nomeUsuario', 'nome' ou 'senha' estão faltantes." });
-        }else{
-            const resultado = await insereUsuario(req.body);
-            if (!resultado)
-                res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-            else
-                res.json({ 'statusCode': 200, 'message': "Usuário cadastrado com sucesso" }); 
-        }
+// ========================== ROTAS CRUD USUÁRIO  =========================== 
+app.use("/usuarios", usersRoutes);
 
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
-});
-
-app.put('/atualiza_usuario', async function(req, res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && (!req.body.nomeUsuario || !req.body.nome || !req.body.senha || !req.body.id_conta) ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'id_conta', 'nomeUsuario', 'nome' ou 'senha' estão faltantes." });
-        }else{
-            const resultado = await atualizaUsuario(req.body);
-            if (!resultado)
-                res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-            else
-                res.json({ 'statusCode': 200, 'message': "Usuário atualizado com sucesso" }); 
-        }
-
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
-});
-
-app.delete('/deleta_usuario', async function(req, res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && !req.body.id_conta ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'id_conta' está faltante." });
-        }else{
-            const resultado = await deletaUsuario(req.body);
-            if (!resultado)
-                res.json({ 'statusCode': 500, 'message': `Erro inesperado.` });
-            else
-                res.json({ 'statusCode': 200, 'message': "Usuário deletado com sucesso" }); 
-        }
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
-});
-
+// ========================== ROTAS CRUD PARTIDAS  ========================== 
+app.use("/partidas", partidasRoutes);
 
 //TODO:
 app.get('/recupera_pontuacao',function(req,res){
     console.log(`TODO: Implementar conexão com banco e buscar pontuação (organizar e formatar os dados, etc). Retornar um json!`);
-});
-
-
-app.post('/cadastra_partida', async function(req,res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && (!req.body.id_jogo || !req.body.id_conta_1) ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'id_jogo' ou 'id_conta_1' estão faltantes." });
-        }else{
-            req.body.id_conta_2 = req.body.id_conta_2 ? req.body.id_conta_2 : 'NULL';
-    
-            const resultado = await inserePartida(req.body);
-            if (!resultado)
-                res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-            else
-                res.json({ 'statusCode': 200, 'message': "Partida cadastrada com sucesso" }); 
-        }
-
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
-});
-
-app.put('/atualiza_partida', async function(req,res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && (!req.body.id_jogo || !req.body.id_conta_1 || !req.body.id_partida) ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'id_jogo', 'id_conta_1' ou 'id_partida' estão faltantes." });
-        }else{
-
-            req.body.id_conta_2 = req.body.id_conta_2 ? req.body.id_conta_2 : 'NULL';
-    
-            const resultado = await atualizaPartida(req.body);
-            if (!resultado)
-                res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-            else
-                res.json({ 'statusCode': 200, 'message': "Partida atualizada com sucesso" }); 
-        }
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
-});
-
-app.delete('/deleta_partida', async function(req,res){
-    try{
-        // verifica corpo da req
-        if(req && req.body && !req.body.id_partida)
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'id_partida' faltante." });
-
-        req.body.id_conta_2 = req.body.id_conta_2 ? req.body.id_conta_2 : 'NULL';
-
-        const resultado = await deletaPartida(req.body);
-        if (!resultado)
-            res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-        else
-            res.json({ 'statusCode': 200, 'message': "Partida deletada com sucesso" }); 
-    }catch(ex){
-        res.json({ 'statusCode': 500, 'message': `Erro inesperado` });
-    }
 });
 
 // ===================================== CONFIGURAÇÕES GLOBAIS DA APLICAÇÃO DO BACKEND ===================================== 
