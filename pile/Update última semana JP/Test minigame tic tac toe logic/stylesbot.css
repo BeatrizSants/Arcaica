@@ -1,0 +1,26 @@
+.game-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.gameplay-container {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #ccc;
+    text-align: center;
+}
+
+.gameplay-container:nth-child(2) {
+    margin-left: 20px; /* Space between player and robot gameplay */
+}
+
+#combo, #robot-combo {
+    margin-bottom: 10px;
+}
+
+.arrow {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+}

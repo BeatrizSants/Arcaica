@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Combo Game</title>
+    <link rel="stylesheet" href="stylesbot.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Player's gameplay -->
+        <div class="gameplay-container">
+            <div id="combo"></div>
+            <div id="timer">Time: 30s</div>
+            <div id="score">Score: 0</div>
+        </div>
+        
+        <!-- Robot opponent's gameplay -->
+        <div class="gameplay-container">
+            <div id="robot-combo"></div>
+            <div id="robot-timer">Robot Time: 30s</div>
+            <div id="robot-score">Robot Score: 0</div>
+        </div>
+    </div>
+    
+    <!-- Audio elements -->
+    <audio id="keyPressSound" src="sounds/popsound_note_success.ogg"></audio>
+    <audio id="comboCompleteSound" src="sounds/bellsound_combo_success.wav"></audio>
+    <audio id="missSound" src="sounds/heavybellsound_note_fail.wav"></audio>
+    <audio id="gameOverSound" src="sounds/WhistleSound_game_over.wav"></audio>
+
+    <script src="scriptbot.js"></script>
+</body>
+</html>

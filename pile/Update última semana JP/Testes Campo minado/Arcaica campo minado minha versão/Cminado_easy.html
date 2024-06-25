@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campo Minado</title>
+    <link rel="stylesheet" href="Cminado_easy.css">
+</head>
+<body>
+    <div class="top-left-panel">
+        <h1>Campo Minado</h1>
+        <label for="difficulty-level">Nível de Dificuldade:</label>
+        <select id="difficulty-level">
+            <option value="easy">Fácil</option>
+            <option value="medium">Médio</option>
+            <option value="hard">Difícil</option>
+        </select>
+        <button id="reset-button" class="reset-button">Reiniciar Jogo</button>
+    </div>
+    <div class="container">
+        <div class="game-container">
+            <div id="timer" class="timer">Tempo: 0s</div>
+            <div id="board" class="game-board"></div>
+            <div id="flag-count">Bandeirolas restantes: 10</div>
+        </div>
+    </div>
+    
+    <script src="Cminado_easy.js"></script>
+</body>
+</html>

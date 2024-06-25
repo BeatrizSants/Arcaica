@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Combo Game</title>
+    <link rel="stylesheet" href="stylesthirdp.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Player's gameplay -->
+        <div class="gameplay-container">
+            <div id="combo"></div>
+            <div id="timer">Time: 30s</div>
+            <div id="score">Combo: 0</div>
+        </div>
+        
+        <!-- Robot opponent's gameplay -->
+        <div class="gameplay-container">
+            <div id="robot-combo"></div>
+            <div id="robot-timer">Robot Time: 30s</div>
+            <div id="robot-score">Robot Combo: 0</div>
+        </div>
+    </div>
+    
+    <!-- Fireball all -->
+    <div class="spinners-container">
+        <div class="container">
+            <img id="player-spinner" class="spinner-image" src="Img all/Fireball_Witches.gif" alt="Player Spinning Image">
+        </div>
+        <div class="container">
+            <img id="robot-spinner" class="spinner-image" src="Img all/Fireball_Witches.gif" alt="Robot Spinning Image">
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="keyPressSound" src="sounds/popsound_note_success.ogg"></audio>
+    <audio id="comboCompleteSound" src="sounds/bellsound_combo_success.wav"></audio>
+    <audio id="missSound" src="sounds/heavybellsound_note_fail.wav"></audio>
+    <audio id="gameOverSound" src="sounds/WhistleSound_game_over.wav"></audio>
+
+    <script src="scriptthirdp.js"></script>
+</body>
+</html>

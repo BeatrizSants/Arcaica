@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    text-align: center;
+}
+
+#combo {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#timer, #score {
+    font-size: 20px;
+    margin: 10px;
+}
+
+img.arrow {
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Adjust the size as needed */
+    margin: 5px;
+}
