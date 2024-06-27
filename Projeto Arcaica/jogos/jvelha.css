@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Nanum Pen Script";
 }
 
 body {
@@ -15,7 +18,9 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(img/MasterPage_Fullpage.png);
+  background-image: url(img/MasterPage_Fullpage.png),
+    linear-gradient(#14021f, #14021f, #f02a75, #fd8ea1);
+  user-select: none;
 }
 
 .background {
@@ -138,11 +143,11 @@ body {
   border: none;
   padding: 2vh;
   width: 63.5vh;
-  height: 66vh;
+  height: 65vh;
   position: absolute;
   text-align: center;
   left: 3vh;
-  top: 8.5vh;
+  top: 9.3vh;
 }
 
 .titles {
@@ -157,8 +162,8 @@ body {
   width: 31.75vh;
   height: 8vh;
   border: none;
-  background-color: #54163b;
-  background-image: url(img/#);
+  background-color: #621f47;
+  background-image: url(img/Single_player_obscured.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -176,8 +181,8 @@ body {
   width: 31.75vh;
   height: 8vh;
   border: none;
-  background-color: #54163b;
-  background-image: url(img/#);
+  background-color: #621f47;
+  background-image: url(img/Multi_player_obscured.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -199,23 +204,139 @@ body {
   display: block;
 }
 
-.difficulty,
-.multiplayer-mode {
-  margin-bottom: 20px;
+.difficulty {
+  font-size: 5vh;
+  color: #ffc675;
+  text-shadow: 0.15vh 0.15vh 0 #d86c13, -0.15vh 0.15vh 0 #f88324,
+    0.15vh -0.15vh 0 #f88324, -0.15vh -0.15vh 0 #f88324, 0.15vh 0 0 #f88324,
+    -0.15vh 0 0 #f88324, 0 0.15vh 0 #f88324, 0 -0.15vh 0 #f88324;
 }
 
-button {
-  padding: 10px 20px;
+.custom-select-wrapper {
+  position: absolute;
+  display: inline-block;
+  left: 14vh;
+  height: 14vh;
+  top: 15vh;
+  width: 36vh;
+  font-size: 3vh;
+  background-color: #591343;
+}
+
+.custom-select {
+  display: none; /* Oculta el select original */
+}
+
+.custom-select-trigger {
+  display: block;
+  padding: 1vh 2vh 1vh 1vh;
+  border: 0.2vh solid #964ad2;
+  border-radius: 0.5vh;
+  background-color: #3a265f;
+  color: #fff;
+  width: 26vh;
   cursor: pointer;
+  font-size: 3.2vh;
+  position: absolute;
+  left: 5vh;
+  transition: 0.2ms ease-in-out;
+  z-index: 1;
+}
+.custom-select-trigger:hover {
+  transform: scale(1.05);
+  background-color: #321443;
+  border: 0.2vh solid #ff783c;
+}
+.custom-select-trigger::after {
+  content: "▼"; /* Flecha hacia abajo */
+  font-size: 1.5vh;
+  position: absolute;
+  top: 50%;
+  right: 1vh;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.custom-options {
+  display: none;
+  position: absolute;
+  bottom: -14.5vh;
+  left: 6.6vh;
+  right: 1vh;
+  border: 0.3vh solid;
+  width: 23vh;
+  border-image: linear-gradient(
+      to right,
+      red,
+      orange,
+      yellow,
+      green,
+      blue,
+      indigo,
+      violet
+    )
+    1;
+  border-radius: 0.5vh;
+  background-color: #ffffff;
+  z-index: 99;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.1);
+}
+
+.custom-option {
+  padding: 1vh;
+  cursor: pointer;
+}
+
+.custom-option:hover {
+  background-color: #fdf9e5;
+  text-decoration: underline;
+  font-size: 3.2vh;
+  color: #ed7016;
+  font-weight: bolder;
+}
+
+.custom-select-wrapper.open .custom-options {
+  display: block;
 }
 
 .section-image {
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 2vh;
 }
-
 #mode-label {
   display: block;
-  margin-top: 10px;
+}
+.multiplayer-mode {
+  position: absolute;
+  left: 16vh;
+  top: 15vh;
+  font-size: 4vh;
+  color: #ffc675;
+  text-shadow: 0.15vh 0.15vh 0 #d86c13, -0.15vh 0.15vh 0 #f88324,
+    0.15vh -0.15vh 0 #f88324, -0.15vh -0.15vh 0 #f88324, 0.15vh 0 0 #f88324,
+    -0.15vh 0 0 #f88324, 0 0.15vh 0 #f88324, 0 -0.15vh 0 #f88324;
+  background-color: #591343;
+  width: 30vh;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15vh;
+  height: 1vh;
+  background: #b684dd;
+  outline: none;
+  transition: opacity 0.15s ease-in-out;
+  border-radius: 45%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2.5vh;
+  height: 2.5vh;
+  background: #3f10e0;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.002vh solid #d0af07;
 }

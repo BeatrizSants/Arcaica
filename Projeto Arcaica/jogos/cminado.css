@@ -15,7 +15,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(img/MasterPage_Fullpage.png);
+  background-image: url(img/MasterPage_Fullpage.png),
+    linear-gradient(#14021f, #14021f, #f02a75, #fd8ea1);
 }
 
 .background {

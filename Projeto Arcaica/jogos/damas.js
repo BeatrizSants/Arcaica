@@ -55,3 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Default to showing the single player section
   singlePlayerTitle.click();
 });
+const selectWrapper = document.querySelector(".custom-select-wrapper");
+const selectTrigger = selectWrapper.querySelector(".custom-select-trigger");
+const customOptions = selectWrapper.querySelectorAll(".custom-option");
+const originalSelect = selectWrapper.querySelector(".custom-select");
+
+selectTrigger.addEventListener("click", () => {
+  selectWrapper.classList.toggle("open");
+});
+
+customOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const value = option.getAttribute("data-value");
+    const text = option.textContent;
+    originalSelect.value = value;
+    selectTrigger.textContent = text;
+    selectWrapper.classList.remove("open");
+  });
+});
+
+document.addEventListener("click", (e) => {
+  if (!selectWrapper.contains(e.target)) {
+    selectWrapper.classList.remove("open");
+  }
+});

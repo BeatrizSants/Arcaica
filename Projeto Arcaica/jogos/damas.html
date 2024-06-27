@@ -27,32 +27,39 @@
         </div>
         <!-- Single Player section -->
         <div id="single-player" class="content-section">
-          <h2>Single Player</h2>
-          <!-- Add an image to the Single Player section here -->
+          <!-- Add an image to the Single Player section here 
           <img
             src="path_to_your_image.jpg"
             alt="Single Player Image"
             class="section-image"
-          />
-          <div class="difficulty">
-            <label for="difficulty-select">Difficulty:</label>
-            <select id="difficulty-select">
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+          />-->
+          <div class="custom-select-wrapper">
+            <label class="difficulty" for="difficulty-select"
+              >Dificuldade:</label
+            >
+            <select id="difficulty-select" class="custom-select">
+              <option value="none">none</option>
+              <option value="easy">Facil</option>
+              <option value="medium">Medio</option>
+              <option value="hard">Dificil</option>
             </select>
+            <div class="custom-select-trigger">Selecione...</div>
+            <div class="custom-options">
+              <div class="custom-option" data-value="easy">Facil</div>
+              <div class="custom-option" data-value="medium">Medio</div>
+              <div class="custom-option" data-value="hard">Dificil</div>
+            </div>
           </div>
           <button id="single-player-play"></button>
         </div>
         <!-- Multi Player section -->
         <div id="multi-player" class="content-section">
-          <h2>Multi Player</h2>
-          <!-- Add an image here -->
+          <!-- Add an image here
           <img
             src="path_to_your_image.jpg"
             alt="Multi Player Image"
             class="section-image"
-          />
+          /> -->
           <div class="multiplayer-mode">
             <label for="mode-select">Mode:</label>
             <input type="range" id="mode-select" min="0" max="1" step="1" />
