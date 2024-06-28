@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 const jwtSecret = '3KHnervQCxzmTi6cl8gIbg==';
 const duracaoHorasToken = 1;
 
-export const loginUser = (req, res) => {
+export const loginUser = async (req, res) => {
     const { usuario, senha } = req.body;
 
     // Verifica usuario e senha
@@ -12,14 +12,15 @@ export const loginUser = (req, res) => {
         return res.status(400).json({ message: 'Usuário e senha são necessários.' });
     }
 
-    const user = buscaUsuarioParaLoginSQL(usuario, senha);
-
+    const user = await buscaUsuarioParaLoginSQL(usuario, senha);
     if (!user) {
         return res.status(401).json({ message: 'Usuário ou senha inválidos.' });
+    }else{
+        console.log(`usuário: ${user.nome_usuario} encontrado para a referida senha`);
     }
 
     const token = jwt.sign({ userId: usuario.Id_conta, username: user.usuario }, jwtSecret, { expiresIn: `${duracaoHorasToken}h` });
-    res.json({ message: `Usuário "${usuario}" autenticado com sucesso`, token });
+    res.json({ message: `Bem-vindo, "${usuario}"!`, token });
 };
 
 

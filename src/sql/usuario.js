@@ -50,10 +50,10 @@ export async function buscaUsuarioParaLoginSQL(usuario, senha){
         const db = await openDb();
         var resultado = await db.get(`SELECT * FROM Conta where nome_usuario = '${usuario}' AND senha = '${senha}';`);
         await db.close();
-        console.log(resultado);
-        if(!resultado || resultado.length < 1)
-            throw new Error(`Usuário "${usuario}" não encontrado`);
-        return resultado[0];
+        if (!resultado) {
+            throw new Error(`Usuário "${usuario}" com a referida senha não encontrado`);
+        }
+        return resultado;
     } catch (error) {
         console.error("Erro:", error);
         return false;

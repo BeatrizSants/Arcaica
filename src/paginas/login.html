@@ -11,12 +11,12 @@
       <div id="b1" class="box">
         <button class="fechar-popup" onclick="hidepopup('popupLog')">X</button>
         <h1>Log In</h1>
-        <form id="login" class="input-group">
+        <form id="login" class="input-group" >
           <div class="input-box">
-            <input type="text" placeholder="Usuário" required />
+            <input type="text" placeholder="Usuário" required name="usuario"/>
           </div>
           <div class="input-box">
-            <input type="password" placeholder="Senha" required />
+            <input type="password" placeholder="Senha" required name="senha"/>
           </div>
           <div class="remember-forgot">
             <label><input type="checkbox" />Lembrar usuário</label>
@@ -24,7 +24,7 @@
           </div>
 
           <div class="submit-btn">
-            <button type="submit" class="confirm-btn">ENTRAR</button>
+            <button class="confirm-btn" onclick="chamaApiLogin(event)">ENTRAR</button>
           </div>
 
           <div class="login-register">

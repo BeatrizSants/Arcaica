@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import usersRoutes from './routes/usuarioRoutes.js/'
 import partidasRoutes from './routes/partidaRoutes.js/'
 import authRoutes from './routes/authRoutes.js'
+import {authenticateToken} from './controllers/authController.js'; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
