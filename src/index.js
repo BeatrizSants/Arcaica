@@ -25,25 +25,21 @@ console.log("Base criada ou mantida!");
 // ========================== ROTAS GET - Páginas  =========================== 
 // (estes endpoints não têm regra de negócio, apenas retornam cópias dos htmls pro navegador do cliente usar. Muito simples)
 app.get('/',function(req,res){
-    console.log("Requisição p/ tela de home recebida");
     res.sendFile(path.join(__dirname+'/paginas/home.html'));
 });
 app.get('/login',function(req,res){
-    console.log("Requisição p/ tela de login recebida");
     res.sendFile(path.join(__dirname+'/paginas/login.html'));
 });
 app.get('/about',function(req,res){
-    console.log("Requisição p/ tela de about recebida");
     res.sendFile(path.join(__dirname+'/paginas/about.html'));
 });
 app.get('/game_selection',function(req,res){
-    console.log("Requisição p/ tela de game selection recebida");
     res.sendFile(path.join(__dirname+'/paginas/game_selection.html'));
 });
 app.get('/settings',function(req,res){
-    console.log("Requisição p/ tela de settings recebida");
     res.sendFile(path.join(__dirname+'/paginas/configuracoes.html'));
 });
+
 
 // ============================= ROTAS DE AUTH  ============================= 
 app.use("/auth", authRoutes);
