@@ -23,6 +23,11 @@
       display: flex;
       justify-content: center;
     }
+
+    #scores {
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -49,10 +54,20 @@
       <button id="8" class="field" onclick="fieldClick('8')"></button>
       <button id="9" class="field" onclick="fieldClick('9')"></button>
     </div>
+
+    <div id="scores">
+      <p>Jogador X: <span id="scoreX">0</span></p>
+      <p>Jogador O: <span id="scoreO">0</span></p>
+    </div>
   </div>
 
   <script>
     var vez = localStorage.getItem("vez") || "X"; // Inicializa com "X" se não houver valor no localStorage
+    var scoreX = parseInt(localStorage.getItem("scoreX")) || 0;
+    var scoreO = parseInt(localStorage.getItem("scoreO")) || 0;
+
+    document.getElementById("scoreX").textContent = scoreX;
+    document.getElementById("scoreO").textContent = scoreO;
 
     function fieldClick(id) {
       // Verifica se o campo já está preenchido
@@ -62,6 +77,21 @@
 
       // Preenche o campo com a vez atual (X ou O)
       document.getElementById(id).innerHTML = vez;
+
+      // Verifica se o jogador atual ganhou
+      if (checkWinner()) {
+        alert("Jogador " + vez + " ganhou!");
+        updateScore(vez);
+        resetGame();
+        return;
+      }
+
+      // Verifica se houve empate
+      if (checkTie()) {
+        alert("Empate!");
+        resetGame();
+        return;
+      }
 
       // Alterna a vez entre X e O
       vez = vez === "X" ? "O" : "X";
@@ -87,7 +117,8 @@
 
       // Verifica se a máquina ganhou após a jogada
       if (checkWinner()) {
-        alert("Voce ganhou!");
+        alert("Máquina (Jogador O) ganhou!");
+        updateScore("O");
         resetGame();
         return;
       }
@@ -143,6 +174,19 @@
         }
       }
       return true;
+    }
+
+    // Função para atualizar a pontuação
+    function updateScore(player) {
+      if (player === "X") {
+        scoreX += 15;
+        document.getElementById("scoreX").textContent = scoreX;
+        localStorage.setItem("scoreX", scoreX);
+      } else if (player === "O") {
+        scoreO += 15;
+        document.getElementById("scoreO").textContent = scoreO;
+        localStorage.setItem("scoreO", scoreO);
+      }
     }
 
     // Função para reiniciar o jogo
