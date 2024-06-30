@@ -1,5 +1,3 @@
-//preloadImages
-
 //pop-up include
 w3.includeHTML();
 
@@ -25,8 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 //onclick pop-up
 function showpopup(id) {
   var element = document.getElementById(id);
-
-  element.style.display = "flex"; /*popup aparece */
+  element.style.display = "flex";
 
   element.classList.add("show-popup");
   if (id === "popupLog") {
@@ -34,10 +31,10 @@ function showpopup(id) {
     var b2 = document.getElementById("b2");
     if (b1) {
       b1.style.display = "block";
-      b1.style.pointerEvents = "auto"; // Make interactive
+      b1.style.pointerEvents = "auto";
     }
     if (b2) {
-      b2.style.pointerEvents = "auto"; // Make interactive
+      b2.style.pointerEvents = "auto";
     }
   }
 }
@@ -50,11 +47,11 @@ function hidepopup(id) {
     var b2 = document.getElementById("b2");
     if (b1) {
       b1.style.display = "none";
-      b1.style.pointerEvents = "none"; // Make non-interactive
+      b1.style.pointerEvents = "none";
     }
     if (b2) {
       b2.style.display = "none";
-      b2.style.pointerEvents = "none"; // Make non-interactive
+      b2.style.pointerEvents = "none";
     }
   }
 }
@@ -75,86 +72,97 @@ function login(id) {
 }
 
 //turn on/off
-
 function toggleEfect(button) {
   let turn = button.closest(".turn");
   turn.classList.toggle("off"); //off é adicionado a turn ou removido se já estiver presente
 }
 
-
-
-
-
 //TODO: Refatorar e melhorar as seguintes funções, pois a fiz apenas O MÍNIMO
 //      com POPUPS EM ALERT HORROROSAS! (pouco tempo até entrega...)
-function chamaApiLogin(event){
+function chamaApiLogin(event) {
   event.preventDefault();
-  const form = document.getElementById('login');
+  const form = document.getElementById("login");
 
   const formData = new FormData(form);
   const formDataObj = {};
   formData.forEach((value, key) => {
-      formDataObj[key] = value;
+    formDataObj[key] = value;
   });
 
-  var callbackSucesso = function(data){
-    if(data.message)
+  var callbackSucesso = function (data) {
+    if (data.message)
       alert(`${data.message}\r\(TODO: Fazer popup bonitinho depois)`);
-    localStorage.setItem('jwtToken', data.token);
+    localStorage.setItem("jwtToken", data.token);
     form.submit();
   };
-  var callbackFalha = function(error){ 
+  var callbackFalha = function (error) {
     event.preventDefault();
-    alert(`${error && error.message ? error.message : "Erro inesperado"}. \r\n(TODO: Fazer popup bonitinho depois)`);
+    alert(
+      `${
+        error && error.message ? error.message : "Erro inesperado"
+      }. \r\n(TODO: Fazer popup bonitinho depois)`
+    );
   };
 
   enviaRequisicaoApi(
-    '/auth/login', 
-    formDataObj, 
-    false, 
-    callbackSucesso, 
+    "/auth/login",
+    formDataObj,
+    false,
+    callbackSucesso,
     callbackFalha
   );
-  
 }
 
-function enviaRequisicaoApi(url, formDataObj, requerAutenticacao, callback, callbackFalha){
-  
-  const jwtToken = localStorage.getItem('jwtToken');
+function enviaRequisicaoApi(
+  url,
+  formDataObj,
+  requerAutenticacao,
+  callback,
+  callbackFalha
+) {
+  const jwtToken = localStorage.getItem("jwtToken");
   if (requerAutenticacao && !jwtToken) {
-    console.error('Token JWT não encontrado!');
+    console.error("Token JWT não encontrado!");
     return;
   }
-  
-  const requestOptions = (requerAutenticacao ? {
-    // com header de autenticação
-    method: 'POST', headers: { 'Authorization': `Bearer ${jwtToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)
-  } : { 
-    // sem header de autenticação
-    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)  
-  });
+
+  const requestOptions = requerAutenticacao
+    ? {
+        // com header de autenticação
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataObj),
+      }
+    : {
+        // sem header de autenticação
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formDataObj),
+      };
 
   fetch(url, requestOptions)
-  .then(response => {
+    .then((response) => {
       if (!response.ok) {
-          if (response.status === 404) {
-              throw new Error('Não encontrado');
-          }else if (response.status === 401) {
-            throw new Error('Dados de login inválidos');
-          } else {
-              throw new Error('Erro interno');
-          }
+        if (response.status === 404) {
+          throw new Error("Não encontrado");
+        } else if (response.status === 401) {
+          throw new Error("Dados de login inválidos");
+        } else {
+          throw new Error("Erro interno");
+        }
       }
       return response.json();
-  })
-  .then(data => {
+    })
+    .then((data) => {
       callback(data);
-  })
-  .catch(error => {
-    callbackFalha(error);
-  });
-
+    })
+    .catch((error) => {
+      callbackFalha(error);
+    });
 }
-function removeSessaoUsuario(){
-  localStorage.removeItem('jwtToken');
+function removeSessaoUsuario() {
+  localStorage.removeItem("jwtToken");
 }

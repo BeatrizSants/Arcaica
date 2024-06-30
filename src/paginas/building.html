@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+      .popup {
+        position: relative;
+        width: 129vh;
+        height: 77vh;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background-color: #460d0da9;
+        opacity: 0;
+        visibility: hidden;
+        transition: visibility 0.25s ease-in-out, transform 0.25s ease-in-out,
+          opacity 0.25s ease-in-out;
+        z-index: 3;
+        box-shadow: 0 0 3vh #e94747, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+          inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+        user-select: none;
+      }
+
+      .redcard {
+        position: relative;
+        width: 60vh;
+        height: 65vh;
+        background-image: url("img/Popup_em_breve.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        color: rgb(255, 255, 255);
+        z-index: 4;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+
+      .show-popup {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .fechar-popup {
+        top: 4vh;
+        right: 0;
+        position: absolute;
+        margin: 1.5vh;
+        width: 3.5vh;
+        font-size: 5.5vh;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.564);
+        font-weight: bolder;
+        text-align: center;
+        font-family: "Nanum Pen Script";
+      }
+
+      .fechar-popup:hover {
+        color: #9f082f;
+        transform: scale(1.2);
+      }
+      h1 {
+        font-family: "Nanum Pen Script";
+        font-size: 6vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="popup" id="building">
+      <div class="redcard">
+        <button class="fechar-popup" onclick="hidepopup('building')">X</button>
+        <h1>Construindo...</h1>
+      </div>
+    </div>
+  </body>
+</html>

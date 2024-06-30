@@ -13,9 +13,12 @@
 
     <!-- icon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
   </head>
   <body>
     <div class="background" id="background">
+      <div w3-include-html="/building"></div>
+      <a href="#"><div class="monarchIcon"></div></a>
       <div id="image-overlay"></div>
       <button
         id="return-btn"
@@ -24,7 +27,6 @@
         data-img="img/Gselect_Back_open.png"
         onclick="homereturn()"
       ></button>
-      <div class="monarchIcon" data-img="img/#"></div>
       <!-- game cards -->
       <div class="painel">
         <div class="name"></div>
@@ -34,7 +36,7 @@
               class="swiper-slide card-container"
               data-img="img/GSelection_Title_Jvelha.png"
             >
-              <a href="#">
+              <a href="/jvelha">
                 <div class="card">
                   <div
                     class="front"
@@ -48,7 +50,7 @@
               class="swiper-slide card-container"
               data-img="img/GSelection_Title_Damas.png"
             >
-              <a href="#">
+              <a href="/damas">
                 <div class="card">
                   <div
                     class="front"
@@ -62,7 +64,7 @@
               class="swiper-slide card-container"
               data-img="img/GSelection_Title_Cminado.png"
             >
-              <a href="#">
+              <a href="/cminado">
                 <div class="card">
                   <div
                     class="front"
@@ -75,16 +77,15 @@
             <div
               class="swiper-slide card-container"
               data-img="img/GSelection_Title_Nogame.png"
+              onclick="showpopup('building')"
             >
-              <a href="#">
-                <div class="card">
-                  <div
-                    class="front"
-                    data-img="img/Gselect_Card_Front_anon.png"
-                  ></div>
-                  <div class="back"></div>
-                </div>
-              </a>
+              <div class="card">
+                <div
+                  class="front"
+                  data-img="img/Gselect_Card_Front_anon.png"
+                ></div>
+                <div class="back"></div>
+              </div>
             </div>
           </div>
         </div>

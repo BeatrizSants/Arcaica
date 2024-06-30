@@ -1,6 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap");
 .popup {
-  position: fixed;
+  position: relative;
   margin: 0.5vh;
   width: 128vh;
   height: 76vh;
@@ -12,16 +11,21 @@
   visibility: hidden;
   transition: visibility 0.25s ease-in-out, transform 0.25s ease-in-out,
     opacity 0.25s ease-in-out;
-  z-index: 1;
+  z-index: 3;
 }
 
-.contentAbout {
+.contentInfo {
   position: relative;
+  width: 40vh;
+  height: 45vh;
   margin: 6% auto;
-  background-color: rgb(234, 182, 103);
-  padding: 1.6vh 2.4vh;
-  width: 38.4vh;
-  background-image: url("#");
+  padding: 0.5vh;
+  border-radius: 10%;
+  border: 0.2vh solid #b364fc;
+  box-shadow: 0 0 1vh #b364fc;
+  background-color: #3c1462;
+  color: rgb(255, 255, 255);
+  z-index: 4;
 }
 
 .show-popup {
@@ -35,7 +39,7 @@
   position: absolute;
   margin: 1.5vh;
   width: 3.5vh;
-  font-size: 2vh;
+  font-size: 3.5vh;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -47,14 +51,4 @@
 .fechar-popup:hover {
   color: #9f082f;
   transform: scale(1.2);
-}
-.contentAbout h1 {
-  color: rgb(56, 3, 3);
-  font-size: 2.5vh;
-  text-align: center;
-}
-
-.contentAbout p {
-  color: rgb(104, 69, 35);
-  font-size: 2vh;
 }

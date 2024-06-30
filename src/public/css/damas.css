@@ -1,0 +1,339 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nanum Pen Script";
+}
+
+body {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(../img/MasterPage_Fullpage.png),
+    linear-gradient(#14021f, #14021f, #f02a75, #fd8ea1);
+  user-select: none;
+}
+
+.background {
+  position: relative;
+  width: 132vh;
+  height: 80vh;
+  border: 1.5vh solid #d0af07;
+  box-shadow: 0 0 3vh #e7c606, inset 0.5vh 0.5vh 0 rgb(255, 255, 255),
+    inset -0.5vh -0.5vh 0 rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../img/Pconf_Damas_Base.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-top: 15vh;
+}
+
+.vine-b {
+  position: absolute;
+  width: 55vh;
+  height: 45vh;
+  bottom: 0;
+  left: 0;
+  margin: 0.5vh;
+  background-image: url(../img/Pconf_Allversions_Vinebottomleft.png);
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+.vine-t {
+  position: absolute;
+  width: 55vh;
+  height: 45vh;
+  top: 0;
+  right: 0;
+  margin: 0.5vh;
+  background-image: url(../img/Pconf_Allversions_Vinetopright.png);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.return-btn {
+  position: absolute;
+  width: 38vh;
+  height: 10vh;
+  bottom: 1vh;
+  left: 0;
+  background-image: url(../img/Pconf_Allversions_backbutton_closed.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+.return-btn:hover {
+  background-image: url(../img/Pconf_Allversions_backbutton_open.png);
+}
+
+.info {
+  position: absolute;
+  width: 10vh;
+  height: 10vh;
+  background-image: url(../img/Pconf_Allversions_Infobutton_closed.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  bottom: 1vh;
+  right: 1vh;
+  border-radius: 50%;
+}
+.info:hover {
+  background-image: url(../img/Pconf_Allversions_Infobutton_open.png);
+}
+#single-player-play {
+  position: absolute;
+  width: 55vh;
+  height: 25vh;
+  background-image: url(../img/Pconf_Allversions_playbutton_closed.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  bottom: 6vh;
+  left: 8vh;
+  background-color: transparent;
+  border: none;
+  z-index: 1;
+}
+#single-player-play:hover {
+  background-image: url(../img/Pconf_Allversions_playbutton_open.png);
+}
+#multi-player-play {
+  position: absolute;
+  width: 55vh;
+  height: 25vh;
+  background-image: url(../img/Pconf_Allversions_playbutton_closed.png);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  bottom: 6vh;
+  left: 8vh;
+  background-color: transparent;
+  border: none;
+  z-index: 1;
+}
+#multi-player-play:hover {
+  background-image: url(../img/Pconf_Allversions_playbutton_open.png);
+}
+
+.container {
+  background-color: #761a51;
+  border: none;
+  padding: 2vh;
+  width: 63.5vh;
+  height: 65vh;
+  position: absolute;
+  text-align: center;
+  left: 3vh;
+  top: 9.3vh;
+}
+
+.titles {
+  position: absolute;
+  display: flex;
+  left: 0;
+  top: -8vh;
+}
+
+#single-player-title.title-button {
+  cursor: pointer;
+  width: 31.75vh;
+  height: 8vh;
+  border: none;
+  background-color: #621f47;
+  background-image: url(../img/Single_player_obscured.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#single-player-title.title-button.active {
+  background-color: #761a51;
+  background-image: url(../img/SinglePlayerButton.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#multi-player-title.title-button {
+  cursor: pointer;
+  width: 31.75vh;
+  height: 8vh;
+  border: none;
+  background-color: #621f47;
+  background-image: url(../img/Multi_player_obscured.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#multi-player-title.title-button.active {
+  background-color: #761a51;
+  background-image: url(../img/MultiPlayerButton.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.content-section {
+  display: none;
+}
+
+.content-section.active {
+  display: block;
+}
+
+.difficulty {
+  font-size: 5vh;
+  color: #ffc675;
+  text-shadow: 0.15vh 0.15vh 0 #d86c13, -0.15vh 0.15vh 0 #f88324,
+    0.15vh -0.15vh 0 #f88324, -0.15vh -0.15vh 0 #f88324, 0.15vh 0 0 #f88324,
+    -0.15vh 0 0 #f88324, 0 0.15vh 0 #f88324, 0 -0.15vh 0 #f88324;
+}
+
+.custom-select-wrapper {
+  position: absolute;
+  display: inline-block;
+  left: 14vh;
+  height: 14vh;
+  top: 15vh;
+  width: 36vh;
+  font-size: 3vh;
+  background-color: #591343;
+}
+
+.custom-select {
+  display: none;
+}
+
+.custom-select-trigger {
+  display: block;
+  padding: 1vh 2vh 1vh 1vh;
+  border: 0.2vh solid #964ad2;
+  border-radius: 0.5vh;
+  background-color: #3a265f;
+  color: #fff;
+  width: 26vh;
+  cursor: pointer;
+  font-size: 3.2vh;
+  position: absolute;
+  left: 5vh;
+  transition: 0.2ms ease-in-out;
+  z-index: 1;
+}
+.custom-select-trigger:hover {
+  transform: scale(1.05);
+  background-color: #321443;
+  border: 0.2vh solid #ff783c;
+}
+.custom-select-trigger::after {
+  content: "▼";
+  font-size: 1.5vh;
+  position: absolute;
+  top: 50%;
+  right: 1vh;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.custom-options {
+  display: none;
+  position: absolute;
+  bottom: -14.5vh;
+  left: 6.6vh;
+  right: 1vh;
+  border: 0.3vh solid;
+  width: 23vh;
+  border-image: linear-gradient(
+      to right,
+      red,
+      orange,
+      yellow,
+      green,
+      blue,
+      indigo,
+      violet
+    )
+    1;
+  border-radius: 0.5vh;
+  background-color: #ffffff;
+  z-index: 99;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.1);
+}
+
+.custom-option {
+  padding: 1vh;
+  cursor: pointer;
+}
+
+.custom-option:hover {
+  background-color: #fdf9e5;
+  text-decoration: underline;
+  font-size: 3.2vh;
+  color: #ed7016;
+  font-weight: bolder;
+}
+
+.custom-select-wrapper.open .custom-options {
+  display: block;
+}
+
+.section-image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 2vh;
+}
+#mode-label {
+  display: block;
+}
+.multiplayer-mode {
+  position: absolute;
+  left: 16vh;
+  top: 15vh;
+  font-size: 4vh;
+  color: #ffc675;
+  text-shadow: 0.15vh 0.15vh 0 #d86c13, -0.15vh 0.15vh 0 #f88324,
+    0.15vh -0.15vh 0 #f88324, -0.15vh -0.15vh 0 #f88324, 0.15vh 0 0 #f88324,
+    -0.15vh 0 0 #f88324, 0 0.15vh 0 #f88324, 0 -0.15vh 0 #f88324;
+  background-color: #591343;
+  width: 30vh;
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15vh;
+  height: 1vh;
+  background: #b684dd;
+  outline: none;
+  transition: opacity 0.15s ease-in-out;
+  border-radius: 45%;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 2.5vh;
+  height: 2.5vh;
+  background: #3f10e0;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0.002vh solid #d0af07;
+}
