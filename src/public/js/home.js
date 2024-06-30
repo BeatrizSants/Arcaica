@@ -1,6 +1,7 @@
+
 //pop-up include
 w3.includeHTML();
-
+ 
 //troca background
 document.addEventListener("DOMContentLoaded", function () {
   const background = document.getElementById("background");
@@ -12,19 +13,19 @@ document.addEventListener("DOMContentLoaded", function () {
       imageOverlay.style.backgroundImage = "url(" + imgUrl + ")";
       imageOverlay.style.opacity = 1;
     });
-
+ 
     button.addEventListener("mouseout", function () {
       background.style.backgroundImage = "url(img/All_Page.png)";
       imageOverlay.style.opacity = 0;
     });
   });
 });
-
+ 
 //onclick pop-up
 function showpopup(id) {
   var element = document.getElementById(id);
   element.style.display = "flex";
-
+ 
   element.classList.add("show-popup");
   if (id === "popupLog") {
     var b1 = document.getElementById("b1");
@@ -41,7 +42,7 @@ function showpopup(id) {
 function hidepopup(id) {
   var element = document.getElementById(id);
   element.classList.remove("show-popup");
-
+ 
   if (id === "popupLog") {
     var b1 = document.getElementById("b1");
     var b2 = document.getElementById("b2");
@@ -55,12 +56,12 @@ function hidepopup(id) {
     }
   }
 }
-
+ 
 //onclik game page
 function opengames() {
   window.location.href = "../game_selection";
 }
-
+ 
 //troca login e registro
 function register(id) {
   document.getElementById("b1").style.display = "none";
@@ -70,25 +71,25 @@ function login(id) {
   document.getElementById("b2").style.display = "none";
   showpopup(id);
 }
-
+ 
 //turn on/off
 function toggleEfect(button) {
   let turn = button.closest(".turn");
   turn.classList.toggle("off"); //off é adicionado a turn ou removido se já estiver presente
 }
-
+ 
 //TODO: Refatorar e melhorar as seguintes funções, pois a fiz apenas O MÍNIMO
 //      com POPUPS EM ALERT HORROROSAS! (pouco tempo até entrega...)
 function chamaApiLogin(event) {
   event.preventDefault();
   const form = document.getElementById("login");
-
+ 
   const formData = new FormData(form);
   const formDataObj = {};
   formData.forEach((value, key) => {
     formDataObj[key] = value;
   });
-
+ 
   var callbackSucesso = function (data) {
     if (data.message)
       alert(`${data.message}\r\(TODO: Fazer popup bonitinho depois)`);
@@ -103,56 +104,73 @@ function chamaApiLogin(event) {
       }. \r\n(TODO: Fazer popup bonitinho depois)`
     );
   };
-
+ 
   enviaRequisicaoApi(
-    "/auth/login",
+    '/auth/login',
+    'POST',
     formDataObj,
     false,
     callbackSucesso,
     callbackFalha
   );
 }
-
-function enviaRequisicaoApi(
-  url,
-  formDataObj,
-  requerAutenticacao,
-  callback,
-  callbackFalha
-) {
-  const jwtToken = localStorage.getItem("jwtToken");
+ 
+function chamaApiCadastraUsuario(event){
+  event.preventDefault();
+  const form = document.getElementById('register');
+ 
+  const formData = new FormData(form);
+  const formDataObj = {};
+  formData.forEach((value, key) => {
+      formDataObj[key] = value;
+  });
+ 
+  var callbackSucesso = function(data){
+    if(data.message)
+      alert(`${data.message}\r\(TODO: Fazer popup bonitinho depois)`);
+    form.submit();
+  };
+  var callbackFalha = function(error){
+    event.preventDefault();
+    alert(`${error && error.message ? error.message : "Erro inesperado"}. \r\n(TODO: Fazer popup bonitinho depois)`);
+  };
+ 
+  enviaRequisicaoApi(
+    '/usuarios/cadastra',
+    'POST',
+    formDataObj,
+    false,
+    callbackSucesso,
+    callbackFalha
+  );
+ 
+}
+function enviaRequisicaoApi(url, metodoHttp, formDataObj, requerAutenticacao, callback, callbackFalha){
+ 
+  const jwtToken = localStorage.getItem('jwtToken');
   if (requerAutenticacao && !jwtToken) {
-    console.error("Token JWT não encontrado!");
+    alert('Token JWT não encontrado!');
     return;
   }
-
-  const requestOptions = requerAutenticacao
-    ? {
-        // com header de autenticação
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataObj),
-      }
-    : {
-        // sem header de autenticação
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formDataObj),
-      };
-
+ 
+  const requestOptions = (requerAutenticacao ? {
+    // com header de autenticação
+    method: metodoHttp, headers: { 'Authorization': `Bearer ${jwtToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)
+  } : {
+    // sem header de autenticação
+    method: metodoHttp, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)  
+  });
+ 
   fetch(url, requestOptions)
     .then((response) => {
       if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error("Não encontrado");
-        } else if (response.status === 401) {
-          throw new Error("Dados de login inválidos");
-        } else {
-          throw new Error("Erro interno");
-        }
+          if (response.status === 404) {
+              throw new Error('Não encontrado');
+          }else if (response.status === 401) {
+            throw new Error('Não autorizado');
+          } else {
+              throw new Error('Erro interno');
+          }
       }
       return response.json();
     })
@@ -166,3 +184,4 @@ function enviaRequisicaoApi(
 function removeSessaoUsuario() {
   localStorage.removeItem("jwtToken");
 }
+ 

@@ -41,17 +41,17 @@
         <h1>Nova Conta</h1>
         <form id="register" class="input-group">
           <div class="input-box">
-            <input type="text" placeholder="Usuário" required />
+            <input type="text" placeholder="Usuário" required name="nome"/>
           </div>
           <div class="input-box">
-            <input type="email" placeholder="Email" required />
+            <input type="email" placeholder="Email" required name="nomeUsuario"/>
           </div>
           <div class="input-box">
-            <input type="password" placeholder="Senha" required />
+            <input type="password" placeholder="Senha" required name="senha"/>
           </div>
 
           <div class="submit-btn">
-            <button type="submit" class="confirm-btn">Registrar</button>
+            <button type="submit" class="confirm-btn" onclick="chamaApiCadastraUsuario(event)">Registrar</button>
           </div>
 
           <div class="login-register">

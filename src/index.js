@@ -105,6 +105,7 @@ app.get("/building", function (req, res) {
   res.sendFile(path.join(__dirname + "/paginas/building.html"));
 });
 // ============================= ROTAS DE AUTH  =============================
+
 app.use("/auth", authRoutes);
 
 // ========================== ROTAS CRUD USUÁRIO  ===========================
