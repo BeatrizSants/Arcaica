@@ -1,3 +1,5 @@
+
+
 .popup {
   position: relative;
   margin: 0.5vh;
@@ -9,25 +11,24 @@
   background-color: #2b0d46a9;
   opacity: 0;
   visibility: hidden;
-  transition: visibility 0.25s ease-in-out, transform 0.25s ease-in-out,
-    opacity 0.25s ease-in-out;
+  transition: visibility 0.25s ease-in-out, transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
   z-index: 3;
 }
 
 .contentInfo {
   position: relative;
-  width: 40vh;
-  height: 45vh;
+  width: 50vh;
+  height: 50vh;
   margin: 6% auto;
-  padding: 0.5vh;
+  padding: 2vh 2vh;
   border-radius: 10%;
   border: 0.2vh solid #b364fc;
   box-shadow: 0 0 1vh #b364fc;
   background-color: #3c1462;
-  color: rgb(255, 255, 255);
-  background-image: url("#");
   z-index: 4;
 }
+
+
 
 .show-popup {
   opacity: 1;
@@ -38,9 +39,9 @@
   top: 0;
   right: 0;
   position: absolute;
-  margin: 1.5vh;
-  width: 3.5vh;
-  font-size: 2vh;
+  margin: 1vh;
+  width: 4vh;
+  font-size: 4vh;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -52,4 +53,60 @@
 .fechar-popup:hover {
   color: #9f082f;
   transform: scale(1.2);
+}
+
+#fecharCminado{
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin: 1vh;
+  width: 4vh;
+  font-size: 3vh;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.564);
+  font-weight: bolder;
+  text-align: center;
+}
+#fecharCminado:hover {
+  color: #9f082f;
+  transform: scale(1.2);
+}
+
+#contentJvelha p {
+  color: antiquewhite;
+  margin-bottom: 0.5vh;
+  text-indent: 1.8vh;
+  text-align: center;
+  padding-top:2vh;
+  font-family: 'Times New Roman';
+  font-size: 2.35vh;
+}
+
+#contentCminado p{
+  color: antiquewhite;
+  margin-bottom: 0.5vh;
+  text-indent: 1vh;
+  text-align: center;
+  padding-top: 2vh;
+  font-family: 'Times New Roman';
+  font-size: 2.35vh;
+}
+
+#contentDamas p{
+  color: antiquewhite;
+  margin-bottom: 0.5vh;
+  text-indent: 1vh;
+  text-align: center;
+  padding-top:2.8vh;
+  font-family: 'Times New Roman';
+  font-size: 2.5vh;
+}
+
+u {
+  text-decoration: underline;
+  text-decoration-color: rgb(125, 10, 233); /* Define a cor do sublinhado */
+  text-decoration-thickness: 0.2vh; /* Define a espessura do sublinhado */
+  font-family:'Times New Roman';
 }
