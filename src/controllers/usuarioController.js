@@ -5,7 +5,7 @@ export const cadastraUsuario = async function(req, res){
     try{
         // verifica corpo da req
         if(req && req.body && (!req.body.nomeUsuario || !req.body.nome || !req.body.senha) ){
-            res.json({ 'statusCode': 500, 'message': "Requisição com corpo incompleto. 'nomeUsuario', 'nome' ou 'senha' estão faltantes." });
+            res.json({ 'statusCode': 400, 'message': "Requisição com corpo incompleto. 'nomeUsuario', 'nome' ou 'senha' estão faltantes." });
         }else{
             const resultado = await insereUsuarioSQL(req.body);
             if (!resultado)

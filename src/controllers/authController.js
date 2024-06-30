@@ -20,7 +20,7 @@ export const loginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ userId: usuario.Id_conta, username: user.usuario }, jwtSecret, { expiresIn: `${duracaoHorasToken}h` });
-    res.json({ message: `Bem-vindo, "${usuario}"!`, token });
+    res.json({ message: `indo, "${usuario}"!`, token });
 };
 
 

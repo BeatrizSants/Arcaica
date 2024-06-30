@@ -105,54 +105,71 @@ function chamaApiLogin(event) {
   };
 
   enviaRequisicaoApi(
-    "/auth/login",
-    formDataObj,
-    false,
+    '/auth/login', 
+    'POST',
+    formDataObj, 
+    false, 
     callbackSucesso,
     callbackFalha
   );
 }
 
-function enviaRequisicaoApi(
-  url,
-  formDataObj,
-  requerAutenticacao,
-  callback,
-  callbackFalha
-) {
-  const jwtToken = localStorage.getItem("jwtToken");
+function chamaApiCadastraUsuario(event){
+  event.preventDefault();
+  const form = document.getElementById('register');
+
+  const formData = new FormData(form);
+  const formDataObj = {};
+  formData.forEach((value, key) => {
+      formDataObj[key] = value;
+  });
+
+  var callbackSucesso = function(data){
+    if(data.message)
+      alert(`${data.message}\r\(TODO: Fazer popup bonitinho depois)`);
+    form.submit();
+  };
+  var callbackFalha = function(error){ 
+    event.preventDefault();
+    alert(`${error && error.message ? error.message : "Erro inesperado"}. \r\n(TODO: Fazer popup bonitinho depois)`);
+  };
+
+  enviaRequisicaoApi(
+    '/usuarios/cadastra', 
+    'POST',
+    formDataObj, 
+    false, 
+    callbackSucesso, 
+    callbackFalha
+  );
+  
+}
+function enviaRequisicaoApi(url, metodoHttp, formDataObj, requerAutenticacao, callback, callbackFalha){
+  
+  const jwtToken = localStorage.getItem('jwtToken');
   if (requerAutenticacao && !jwtToken) {
-    console.error("Token JWT não encontrado!");
+    alert('Token JWT não encontrado!');
     return;
   }
-
-  const requestOptions = requerAutenticacao
-    ? {
-        // com header de autenticação
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${jwtToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataObj),
-      }
-    : {
-        // sem header de autenticação
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formDataObj),
-      };
+  
+  const requestOptions = (requerAutenticacao ? {
+    // com header de autenticação
+    method: metodoHttp, headers: { 'Authorization': `Bearer ${jwtToken}`, 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)
+  } : { 
+    // sem header de autenticação
+    method: metodoHttp, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formDataObj)  
+  });
 
   fetch(url, requestOptions)
     .then((response) => {
       if (!response.ok) {
-        if (response.status === 404) {
-          throw new Error("Não encontrado");
-        } else if (response.status === 401) {
-          throw new Error("Dados de login inválidos");
-        } else {
-          throw new Error("Erro interno");
-        }
+          if (response.status === 404) {
+              throw new Error('Não encontrado');
+          }else if (response.status === 401) {
+            throw new Error('Não autorizado');
+          } else {
+              throw new Error('Erro interno');
+          }
       }
       return response.json();
     })
