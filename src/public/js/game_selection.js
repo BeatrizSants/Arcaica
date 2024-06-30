@@ -1,3 +1,6 @@
+//pop-up include
+w3.includeHTML();
+
 //swiper carousel
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 3,
@@ -65,3 +68,14 @@ document.addEventListener("DOMContentLoaded", function () {
     frontCard.style.backgroundImage = `url(${imgSrc})`;
   });
 });
+function showpopup(id) {
+  var element = document.getElementById(id);
+
+  element.style.display = "flex"; /*popup aparece */
+
+  element.classList.add("show-popup");
+}
+function hidepopup(id) {
+  var element = document.getElementById(id);
+  element.classList.remove("show-popup");
+}

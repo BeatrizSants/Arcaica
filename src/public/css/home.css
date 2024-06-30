@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
+  user-select: none;
 }
 
 body {
@@ -15,7 +16,8 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url(../img/MasterPage_Fullpage.png);
+  background-image: url(../img/MasterPage_Fullpage.png),
+    linear-gradient(#14021f, #14021f, #f02a75, #fd8ea1);
 }
 
 .background {
@@ -29,7 +31,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: 18.2vh;
+  margin-top: 15vh;
 }
 #image-overlay {
   top: 0;
