@@ -42,3 +42,19 @@ export async function deletaPartidaSQL(partida){
         return false;
     }
 }
+
+export async function getPartidasPorJogoEContaSQL(Id_conta,Id_jogo){
+    try{
+        const db = await openDb();
+        console.log("Buscando ranking do jogo " + Id_jogo);
+        var resultado = await db.all(`SELECT * FROM Partidas where Id_jogo = ${Id_jogo} and Id_conta_1 = ${Id_conta} and Id_conta_2 = NULL order by pontuacao desc;`);
+        await db.close();
+        if (!resultado) {
+            throw new Error(`Nenhuma partida deste jogo foi executada ainda`);
+        }
+        return resultado;
+    } catch (error) {
+        console.error("Erro:", error);
+        return false;
+    }
+}

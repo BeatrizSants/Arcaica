@@ -4,8 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import usersRoutes from "./routes/usuarioRoutes.js/";
 import partidasRoutes from "./routes/partidaRoutes.js/";
+import pontuacaoRoutes from "./routes/pontuacaoRoutes.js/";
 import authRoutes from "./routes/authRoutes.js";
-import { authenticateToken } from "./controllers/authController.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -114,12 +114,8 @@ app.use("/usuarios", usersRoutes);
 // ========================== ROTAS CRUD PARTIDAS  ==========================
 app.use("/partidas", partidasRoutes);
 
-//TODO:
-app.get("/recupera_pontuacao", function (req, res) {
-  console.log(
-    `TODO: Implementar conexão com banco e buscar pontuação (organizar e formatar os dados, etc). Retornar um json!`
-  );
-});
+// ========================== ROTAS CRUD PONTUACAO  ==========================
+app.use("/pontuacao", pontuacaoRoutes);
 
 // ===================================== CONFIGURAÇÕES GLOBAIS DA APLICAÇÃO DO BACKEND =====================================
 app.use(express.static(__dirname + "/public"));

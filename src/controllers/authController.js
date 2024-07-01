@@ -12,14 +12,14 @@ export const loginUser = async (req, res) => {
         return res.status(400).json({ message: 'Usuário e senha são necessários.' });
     }
 
-    const user = await buscaUsuarioParaLoginSQL(usuario, senha);
-    if (!user) {
+    const usuario_obtido = await buscaUsuarioParaLoginSQL(usuario, senha);
+    if (!usuario_obtido) {
         return res.status(401).json({ message: 'Usuário ou senha inválidos.' });
     }else{
-        console.log(`usuário: ${user.nome_usuario} encontrado para a referida senha`);
+        console.log(`usuário: ${usuario_obtido.nome_usuario} encontrado para a referida senha`);
     }
 
-    const token = jwt.sign({ userId: usuario.Id_conta, username: user.usuario }, jwtSecret, { expiresIn: `${duracaoHorasToken}h` });
+    const token = jwt.sign({ userId: usuario_obtido.Id_conta, username: usuario_obtido.usuario }, jwtSecret, { expiresIn: `${duracaoHorasToken}h` });
     res.json({ message: `Bem-vindo, "${usuario}"!`, token });
 };
 
@@ -36,7 +36,8 @@ export const authenticateToken = (req, res, next) => {
         if (err) {
             return res.status(403).json({ message: 'Token Inválido' });
         }
-        req.user = decoded; // Adiciona info de usuário decondificadoa ao objeto de requisição
+        const { userId, username } = decoded;
+        req.user = userId;
         next();             // Continua para a próximo middleware ou route handler
     });
 };
